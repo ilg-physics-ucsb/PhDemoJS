@@ -1,0 +1,225 @@
+<head>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<link rel="stylesheet" href="../../src/css/PhDemoJS.css">
+
+
+
+</head>
+<body>
+
+  <div class="sim">
+  <center>
+ 
+<div id="graph" height= "10 in"></div>
+
+<button onclick="javascript:startUpdate();" class="btn" >Animate!</button>
+
+<div class="slidecontainer">  
+  <br>
+  <br>
+  <b>Starting Height:</b> <span id="f" style="font-weight:bold;color:#000000" > 50 </span> m
+  <input type="range" min="1" max="300" value="200" class="slider" id="myRange">
+  
+<br>
+<br>
+</div>
+
+</center>
+
+</div>
+</body>
+</html>
+<script>
+var default_param= 200
+var n = 2, tmax=1000
+var h = [], t = [], z = [];
+let hpos = [], time = [];
+var dt = 0.005;
+var a = -0.98, offset=-0.5;
+var q= [h[0],0]
+var studentat = 220
+
+hpos[0] = 200;
+time[0] = 0;
+
+for (j = 1; j < tmax; j++){
+time[j]= (j)* dt
+ }
+
+function pos( t, x ) {
+    if( x> 0 ){
+    return 0.5*a*t*t + x;
+    } else{
+    return 0;
+    }
+  };
+
+
+var trace1 = {
+  x: z,
+  y: h,
+  mode: 'markers',
+  marker: {size: [20,10],},
+  name: 'Ball'
+};
+
+var trace2 = {
+  x: time,
+  y: hpos,
+  mode: 'lines',
+  name: 'Trajectory',
+  line: {shape: 'spline'}
+};
+
+var trace3 = {
+  x: z,
+  y: h,
+  mode: 'lines',
+  name: 'Height'
+};
+
+var trace4 = {
+  x: t,
+  y: [h[0],0],
+  mode: 'lines',
+  name: 'Lines'
+}
+
+var layout = {
+  xaxis: {range: [-0.9, 5]},
+  yaxis: {range: [0, 220]},
+  autosize: false,
+  width: 700,
+  height: 500,
+  margin: {
+    l: 50,
+    r: 50,
+    b: 100,
+    t: 100,
+    pad: 4
+  },
+  paper_bgcolor: 'white',
+  plot_bgcolor: 'white',
+  images: [
+      {
+        "source": "https://i.imgur.com/YucR7RY.png",
+        "xref": "x",
+        "yref": "y",
+        "x": - 1,
+        "y": studentat,
+        "sizex": 20,
+        "sizey": 200,
+        "opacity": 1,
+        "layer": "below"
+      }
+    ]
+};
+
+function initialize(sh){
+startheight=Number(sh)
+hpos[0]= startheight;
+time[0] = 0;
+
+for (i = 0; i < n; i++) {
+  h[i] = startheight;
+  t[i] = 0;
+  z[i] = 0;
+}
+z[0]=offset 
+for (j = 1; j < tmax; j++){
+  hpos[j]=hpos[j-1]
+  hpos[j]= pos(time[j],hpos[j-1])
+ }
+
+ Plotly.newPlot('graph', 
+  [trace1, trace2, trace3, trace4],layout
+  )
+  studentat= startheight+20
+  layout = {
+  xaxis: {range: [-0.9, 5]},
+  yaxis: {range: [0, 220]},
+  autosize: false,
+  width: 700,
+  height: 500,
+  margin: {
+    l: 50,
+    r: 50,
+    b: 100,
+    t: 100,
+    pad: 4
+  },
+  paper_bgcolor: 'white',
+  plot_bgcolor: 'white',
+  images: [
+      {
+        "source": "https://i.imgur.com/YucR7RY.png",
+        "xref": "x",
+        "yref": "y",
+        "x": - 1,
+        "y": studentat,
+        "sizex": 20,
+        "sizey": 200,
+        "opacity": 1,
+        "layer": "below"
+      }
+    ]
+};
+}
+
+initialize(default_param)
+
+
+var graphDiv = document.getElementById('graph')
+
+
+function compute () {
+  for (var i = 0; i < n; i++) {
+    h[i] = pos(t[i], h[i]);
+    t[i] +=  dt;
+  }
+  z[1]+=dt*Math.sign(h[1])
+
+  z[0]+= (0.001)*(t[0]*dt)*(1-Math.random())
+}
+
+function update () {
+  compute(); 
+  Plotly.animate('graph', {
+    data: [trace1, trace2, trace3, trace4]
+  }, {
+    transition: {
+      duration: 0.0,
+    },
+    frame: {
+      duration: 0.0,
+      redraw: false,
+    }
+  });
+  if (h[0]> 0){
+  requestAnimationFrame(update)
+  }
+}
+
+
+function startUpdate(){
+  initialize(slider.value)
+  update()
+}
+
+
+
+
+
+var slider = document.getElementById("myRange");
+var output = document.getElementById("f");
+output.innerHTML = slider.value; // Display the default slider value
+
+// Update the current slider value (each time you drag the slider handle)
+slider.oninput = function() {
+  var nh = this.value
+  output.innerHTML = nh;
+  initialize(slider.value)
+
+  
+}
+  </script>
