@@ -35,7 +35,7 @@ var n = 2, tmax=1000
 var h = [], t = [], z = [];
 let hpos = [], time = [];
 var dt = 0.005;
-var a = -0.98, offset=-0.5;
+var a = -5, offset=-0.5;
 var q= [h[0],0]
 var studentat = 220
 
@@ -179,7 +179,7 @@ function compute () {
   }
   z[1]+=dt*Math.sign(h[1])
 
-  z[0]+= (0.001)*(t[0]*dt)*(1-Math.random())
+ 
 }
 
 function update () {
