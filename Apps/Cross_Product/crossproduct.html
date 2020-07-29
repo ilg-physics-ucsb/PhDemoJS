@@ -1,0 +1,663 @@
+<div class="threeapplet" id="container_three_applet_AppletCrossProduct01" style="cursor: auto;"><canvas width="560" height="560" style="width: 500px; height: 500px;"></canvas></div>
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Applet: Cross product - Math Insight</title>
+	<!-- JavaScript Detection -->
+	<script>document.documentElement.className += " js";</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="/static/css/mistyle.css" rel="stylesheet" type="text/css"/>
+<!--[if lte IE 7]>
+<link href="/static/css/iehacks.min.css" rel="stylesheet" type="text/css" />
+<![endif]-->
+
+<!--[if lt IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<script src="/static/js/jquery-latest.js" type="text/javascript"></script>
+<script type="text/javascript" src="/static/geogebra/scripts/deployggb.js"></script>
+<script src="/static/js/round.js" type="text/javascript"></script>
+
+<meta name="description" content="An interactive illustration of the how the cross product gives the area of a parallelogram and a normal vector. "/>
+<script src="/static/js/jquery.cookie.js"></script>
+<script src="/static/js/ajaxcsrf.js" type="text/javascript"></script>
+
+
+<script type="text/javascript" src="/static/MathJax/MathJax.js?config=TeX-AMS_HTML-full,/static/mathjaxconfig/midefault"></script>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-28169224-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</head>
+<body>
+<ul class="ym-skiplinks">
+	
+	<li><a class="ym-skip" href="#main">Skip to main content (Press Enter)</a></li>
+</ul>
+
+<nav id="sitenav" role="navigation">
+  <div class="ym-wrapper">
+    <div class="ym-wbox">
+      <div class="mnav">
+	<ul class="ym-grid ym-equalize linearize-level-2">
+	  <li class="ym-g10 ym-gl"><a href="/">Home</a></li>
+	  <li class="ym-g10 ym-gl"><a href="/thread/list">Threads</a></li>
+	  <li class="ym-g10 ym-gl"><a href="/index/general">Index</a></li>
+	  <li class="ym-g10 ym-gl"><a href="/about/mathinsight">About</a></li>
+	  <li class="ym-g50 ym-gl"><div id="search_box"><form class="ym-searchform" action="/search/#search" method="get">
+	  <input id="id_q_a" type="search" name="q" size="18" class="ym-searchfield" placeholder="Search Math Insight..."  />
+	  <input class="ym-searchbutton" type="submit" value="Search" />
+	</form>
+      </div></li>
+	</ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+<header>
+  <div class="ym-wrapper">
+    <div class="ym-wbox">
+      <h1>Math Insight</h1>
+    </div>
+  </div>
+</header>
+
+
+
+<div id="breadcrumbs_login">
+  <div class="ym-wrapper">
+    <div class="ym-wbox" style="padding-top:0; padding-bottom: 0;">
+      <div class="ym-grid linearize-level-1">
+	<div class="ym-g66 ym-gl">
+	  <div class="ym-gbox-left">
+	    
+	    
+	    
+	  </div>
+	</div>
+	<div class="ym-g33 ym-gr"> 
+	  <div class="ym-gbox-left" style="text-align: right;">
+	    
+	    <a href="/accounts/login?next=/applet/cross_product">log in</a>
+	    
+	  </div>
+	</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="main">
+  <div class="ym-wrapper">
+    <div class="ym-wbox">
+      
+
+<h3>Applet: Cross product</h3>
+
+<div class="javascriptapplet"><div class="threeapplet" id="container_three_applet_AppletCrossProduct01" ><div class="appletimagecontainer" style="width:500px; max-width:100%" ><img src="/media/applet/image/large/cross_product.png" alt="Applet: Cross product" width ="500" height="500" style="display: block; width: 100%; height: auto;" /><h4 style="position: absolute; top: 250.0px; width: 100%;" class="three_applet_loading_message">Applet loading</h4></div></div><div class="appleterror three_load_error"></div></div><p>The vector $\color{red}{\vc{c}}$ (in red) is the cross product of the vectors $\color{blue}{\vc{a}}$ (in blue) and 
+$\color{green}{\vc{b}}$ (in green), $\color{red}{\vc{c}} = \color{blue}{\vc{a}} \times \color{green}{\vc{b}}$.  The parallelogram formed by $\color{blue}{\vc{a}}$ and $\color{green}{\vc{b}}$ is pink on the side where the cross product $\color{red}{\vc{c}}$ points and purple on the opposite side.  Using the mouse, you can drag the arrow tips of the vectors $\color{blue}{\vc{a}}$ and $\color{green}{\vc{b}}$ to change these vectors.  See how the cross product $\color{red}{\vc{c}}$ and the parallelogram change in response.  (You cannot change the red cross product vector $\color{red}{\vc{c}}$ directly.)  The three-dimensional perspective of this graph may be easier to perceive if you keep the figure rotating by dragging it with your mouse.</p>
+
+<p>Notice that the area of the parallelogram (and hence the magnitude of the cross product) go to zero as $\vc{a}$ and $\vc{b}$ approach parallel (where the term &ldquo;parallel&rdquo; also includes what you might think as anti-parallel).  You can also verify that the applet demonstrates $\vc{b} \times \vc{a} = - \vc{a} \times \vc{b}$ and $\vc{a} \times \vc{a} = \vc{0}$, which are important properties of the cross product.</p>
+
+
+
+
+
+
+
+
+<h4>Applet links</h4>
+
+<p class="pre_list">This applet is found in the pages</p>
+<ul class="linklist">
+
+<li><a href="/cross_product" class="content" title="The cross product: Introduction to the cross product with a focus on its basic properties. Includes an interactive graphic to illustrate these properties of the cross product.">The cross product</a></li>
+
+</ul>
+
+<p><a href="/applet/list">List of all applets</a></p>
+
+
+
+
+<h4>General information about three.js applets</h4>
+
+<p>The applet was made using <a href="http://threejs.org/">three.js</a> and requires Javascript as well as a browser that supports <a href="http://get.webgl.org/">WebGL</a>.  For most three.js applets, you can drag with the mouse to rotate the view, drag with the right button to pan, and zoom in/out with the mouse wheel.  Many applets contain points that you can drag to change values of variables.</p>
+
+
+
+      
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="ym-wrapper">
+    <div class="ym-wbox">
+      
+<h4>Cite this as</h4>
+
+<p><a href="/contributor/dqnykamp" class="normaltext">Nykamp DQ</a>, &ldquo;Cross product.&rdquo; From <i>Math Insight</i>. 
+  <a href="http://mathinsight.org/applet/cross_product" class="normaltext">http://mathinsight.org<wbr>/applet/cross_product</a></p>
+
+
+<p>Keywords:
+cross product
+</p>
+
+
+<div id="messageform">
+<h4>Send us a message about &ldquo;Cross product&rdquo;</h4>
+
+<form class="ym-form linearize-form" action="/comments/post/" method="post"><input type='hidden' name='csrfmiddlewaretoken' value='a0lG7J4TaXukRiExYHjRzBrYUp01mKoQ' />
+  
+  <div><input id="id_content_type" name="content_type" type="hidden" value="midocs.applet" /></div><div><input id="id_object_pk" name="object_pk" type="hidden" value="34" /></div><div><input id="id_timestamp" name="timestamp" type="hidden" value="1595526400" /></div><div><input id="id_security_hash" maxlength="40" name="security_hash" type="hidden" value="509252e2786b08f2461a4612238b874084156199" /></div>
+  
+<div class="ym-fbox-text">
+<label for="id_name">Name:</label><input id="id_name" maxlength="50" name="name" type="text" /></div>
+<div class="ym-fbox-text">
+<label for="id_email">Email address:</label><input id="id_email" name="email" type="email" /></div>
+
+<div class="ym-fbox-text">
+<label for="id_comment">Comment:</label><textarea cols="40" id="id_comment" maxlength="3000" name="comment" rows="10">
+</textarea></div>
+<div class="ym-fbox-text" style="display:none;">
+<label for="id_honeypot">If you enter anything in this field your comment will be treated as spam:</label><input id="id_honeypot" name="honeypot" type="text" /></div>
+<div class="ym-fbox-button">
+ <input type="submit" name="post" class="ym-button" value="Send message" />
+</div>
+</form>
+
+</div>
+
+
+
+<section id="copyright">
+
+<div id="copyright_image"><h4><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="/static/image/somerights20.png" /></a></h4></div>
+<p><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/InteractiveResource" property="dct:title" rel="dct:type">Cross product</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://mathinsight.org/applet/cross_product" property="cc:attributionName" rel="cc:attributionURL">Duane Q. Nykamp</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" class="external">Creative Commons Attribution-Noncommercial-ShareAlike 4.0 License</a>.  For permissions beyond the scope of this license, please <a xmlns:cc="http://creativecommons.org/ns#" href="http://mathinsight.org/about/contact" rel="cc:morePermissions">contact us</a>.</p>
+
+</section>
+
+
+
+
+
+    </div>
+  </div>
+</footer>
+
+<!-- full skip link functionality in webkit browsers -->
+<script src="/static/js/yaml-focusfix.js"></script>
+<script type="text/javascript">
+  jQuery(document).ready(function($){
+    /* toggle nav */
+    $("#menu-icon").click(function(){
+	$("#unav").slideToggle();
+    });
+    $("#unav").click(function(){
+	$("#unav").slideToggle();
+    });
+});
+</script>
+<script src="/static/js/jquery.sticky.js"></script>
+<script>
+  $(document).ready(function(){
+    $("#pagenav").sticky({topSpacing:0});
+  });
+</script>
+<script type="text/javascript">
+  function unstick(obj)
+  {
+  obj.style.position="static";
+  }
+</script>
+<script type="text/javascript">
+ function showHide(shID) {
+	if (document.getElementById(shID)) {
+		if (document.getElementById(shID).style.display == 'none') {
+			document.getElementById(shID+'_show').style.display = 'none';
+			document.getElementById(shID+'_hide').style.display = 'inline';
+			document.getElementById(shID).style.display = 'block';
+		}
+		else {
+			document.getElementById(shID+'_show').style.display = 'inline';
+			document.getElementById(shID+'_hide').style.display = 'none';
+			document.getElementById(shID).style.display = 'none';
+		}
+	}
+  }
+  function inIframe () {
+    try { 
+	return window.self !== window.parent; 
+    } 
+    catch (e) { 
+	return true; 
+    }
+  }
+
+function isElementInViewport (el) {
+    // From http://stackoverflow.com/questions/123999/how-to-tell-if-a-dom-element-is-visible-in-the-current-viewport
+    // Modified so true is partially visible
+
+    //special bonus for those using jQuery
+    if (typeof jQuery === "function" && el instanceof jQuery) {
+        el = el[0];
+    }
+
+    var rect = el.getBoundingClientRect();
+
+    return (
+        rect.bottom >= 0 &&
+        rect.right >= 0 &&
+        rect.top <= jQuery(window).height() &&
+        rect.left <= jQuery(window).width()
+    );
+}
+
+
+</script>
+
+
+<div id="geogebra_onit"><script type="text/javascript">
+function ggbOnInit(arg) {
+console.log(arg);
+
+if(inIframe()) { parent.ggbOnInit(arg);} 
+}
+</script></div><script src="/static/js/three/three.js"></script><script src="/static/js/three/controls/TrackballControls.js"></script><script src="/static/js/three/Detector.js"></script><script src="/static/js/three/MIAppletThree.js"></script><script src="/static/js/three/MIThreeObjects.js"></script><script src="/static/js/three/Axes.js"></script><script src="/static/js/three/Arrow.js"></script><script src="/static/js/three/VectorField.js"></script><script src="/static/js/three/Slider.js"></script><script src="/static/js/three/DragObjects.js"></script><script src="/static/js/three/TextLabel.js"></script><script src="/static/js/three/Geometries.js"></script>
+<script>
+if(Detector.webgl) {
+
+applet_three_applet_AppletCrossProduct01=new MIAppletThree('container_three_applet_AppletCrossProduct01', 500, 500, { static_url: '/static/', media_url: '/media/' });
+applet_three_applet_AppletCrossProduct01.run = function() {
+var renderer=this.renderer, container=this.container, width=this.width, height=this.height, namedObjects=this.namedObjects, parameters=this.parameters;
+          var media_url = parameters.hasOwnProperty("media_url") ? parameters["media_url"] : "";
+
+	  var scene = new THREE.Scene();
+	 
+	  renderer.setSize(width, height);
+	  container.append( renderer.domElement );
+	  
+	  var VIEW_ANGLE = 40, ASPECT = width / height, NEAR = 0.1, FAR = 200;
+	  var camera = new THREE.PerspectiveCamera( VIEW_ANGLE, ASPECT, NEAR, FAR);
+	  scene.add(camera);
+	  
+	  camera.position.set(4.5,2.2,2.2);
+	  camera.up = new THREE.Vector3(0,0,1);
+	  camera.lookAt(scene.position);	
+
+	  var controls = new THREE.TrackballControls( camera, renderer.domElement );
+	  
+	  controls.rotateSpeed = 2.0;
+	  controls.panSpeed = 0.01;
+	  controls.staticMoving = true;
+	  controls.target.z=0;
+	  
+	  var drag = new DragObjects(renderer, camera, {controls: controls});
+	  scene.add( drag );
+	  
+	  
+	  var axes = new Axes({size: 1, labelFontSize: 60, labelScale: 1, showAxisTicks: true, showAxisTickLabels: true, axisTickLabelFontSize: 50, axisWidth: 3, axisTickIncrement: 0.5, tickLabelSpace: 0.08});
+	  scene.add( axes );
+      
+	  var axesX1 = new THREE.Object3D();
+	  axesX1.position.x=1;
+	  axes.add(axesX1);
+	  var axesX2 = new THREE.Object3D();
+	  axesX2.position.x=-1;
+	  axes.add(axesX2);
+	  var axesY1 = new THREE.Object3D();
+	  axesY1.position.y=1;
+	  axes.add(axesY1);
+	  var axesY2 = new THREE.Object3D();
+	  axesY2.position.y=-1;
+	  axes.add(axesY2);
+	  var axesZ1 = new THREE.Object3D();
+	  axesZ1.position.z=1;
+	  axes.add(axesZ1);
+	  var axesZ2 = new THREE.Object3D();
+	  axesZ2.position.z=-1;
+	  axes.add(axesZ2);
+	  
+	  // Create vectors
+	  var arrowA = new Arrow({color:"blue", endpoint: new THREE.Vector3(1,1,0.2), headWidth:0.15, headLength:0.3,arrowDetail:16, cylinderForLine: true, lambertMaterial: true , lineWidth: 0.03, cylinderDetail: 8});
+	  axes.add(arrowA);
+	  
+	  var sphereA = arrowA.returnDragTipSphere();
+	  sphereA.scale.y *= 0.5;
+	  sphereA.scale.z *= 0.5;
+	  axes.add(sphereA);
+	  drag.objects.push(sphereA);
+
+	  var arrowB = new Arrow({color:"green", endpoint: new THREE.Vector3(-1,0.1,0.2), headWidth:0.15, headLength:0.3,arrowDetail:16, cylinderForLine: true, lambertMaterial: true, lineWidth: 0.03, cylinderDetail: 8});
+	  axes.add(arrowB);
+	  
+	  var sphereB = arrowB.returnDragTipSphere();
+	  sphereB.scale.y *= 0.5;
+	  sphereB.scale.z *= 0.5;
+	  axes.add(sphereB);
+	  drag.objects.push(sphereB);
+
+
+	  // parallelogram spaned by vectors
+	  // copied idea from parametricGeometry
+	  var parallelogramGeometry = new THREE.Geometry();
+	  parallelogramGeometry.vertices.push(
+	      new THREE.Vector3(), arrowA.returnTipPosition(),
+	      arrowA.returnTipPosition().add(arrowB.returnTipPosition()),
+	      arrowB.returnTipPosition());
+	  parallelogramGeometry.faces.push(new THREE.Face3(0,1,3),
+					   new THREE.Face3(1,2,3));
+	  parallelogramGeometry.faceVertexUvs[0].push(
+	      new THREE.Vector2(), new THREE.Vector2(0,1),
+	      new THREE.Vector2(1,1), new THREE.Vector2(1,0)
+	  );
+	  parallelogramGeometry.computeCentroids();
+	  parallelogramGeometry.computeFaceNormals();
+	  parallelogramGeometry.computeVertexNormals();
+	  
+	  var parallelogramMaterial = new THREE.MeshBasicMaterial(
+	      {color: 'pink', side: THREE.FrontSide, transparent: true, opacity: 0.8})
+	  var parallelogram = new THREE.Mesh(parallelogramGeometry, parallelogramMaterial);
+	  scene.add(parallelogram);
+
+	  var parallelogramMaterial2 = new THREE.MeshBasicMaterial(
+	      {color: 'darkviolet', side: THREE.BackSide, transparent: true, opacity: 0.8})
+	  var parallelogram2 = new THREE.Mesh(parallelogramGeometry, parallelogramMaterial2);
+	  scene.add(parallelogram2);
+
+
+
+	  var crossArrow = new Arrow({color:"red", endpoint: arrowA.returnTipPosition().cross(arrowB.returnTipPosition()), headWidth:0.1, headLength:0.3,arrowDetail:16, cylinderForLine: true, lambertMaterial: true, lineWidth: 0.02, cylinderDetail: 8});
+	  axes.add(crossArrow);
+
+	  
+	  sphereA.addEventListener("moved",function(event){
+	      if(sphereA.position.x > 1){
+		  sphereA.position.x = 1;
+		  sphereA.adjustArrow();
+	      }
+	      
+	      if(sphereA.position.x < -1){
+		  sphereA.position.x = -1;
+		  sphereA.adjustArrow();
+	      }
+	      
+	      if(sphereA.position.y > 1){
+		  sphereA.position.y = 1;
+		  sphereA.adjustArrow();
+	      }
+	      
+	      if(sphereA.position.y < -1){
+		  sphereA.position.y = -1;
+		  sphereA.adjustArrow();
+	      }
+	      
+	      if(sphereA.position.z > 1){
+		  sphereA.position.z = 1;
+		  sphereA.adjustArrow();
+	      }
+	      
+	      if(sphereA.position.z < -1){
+		  sphereA.position.z = -1;
+		  sphereA.adjustArrow();
+	      }
+	      
+	      parallelogramGeometry.vertices[1] = arrowA.returnTipPosition();
+	      parallelogramGeometry.vertices[2].copy(parallelogramGeometry.vertices[1]).add(parallelogramGeometry.vertices[3]);
+	      parallelogramGeometry.verticesNeedUpdate = true;
+
+	      var endpoint = arrowA.returnTipPosition().cross(arrowB.returnTipPosition());
+	      var headLength = Math.min(endpoint.length()*0.6,0.3);
+	      var headWidth = Math.min(headLength*2, 0.1);
+	      crossArrow.setEndpoint(endpoint, headLength, headWidth);
+	      
+	      
+	  });
+
+
+	  sphereB.addEventListener("moved",function(event){
+	      if(sphereB.position.x > 1){
+		  sphereB.position.x = 1;
+		  sphereB.adjustArrow();
+	      }
+	      
+	      if(sphereB.position.x < -1){
+		  sphereB.position.x = -1;
+		  sphereB.adjustArrow();
+	      }
+	      
+	      if(sphereB.position.y > 1){
+		  sphereB.position.y = 1;
+		  sphereB.adjustArrow();
+	      }
+	      
+	      if(sphereB.position.y < -1){
+		  sphereB.position.y = -1;
+		  sphereB.adjustArrow();
+	      }
+	      
+	      if(sphereB.position.z > 1){
+		  sphereB.position.z = 1;
+		  sphereB.adjustArrow();
+	      }
+	      
+	      if(sphereB.position.z < -1){
+		  sphereB.position.z = -1;
+		  sphereB.adjustArrow();
+	      }
+	      
+	      parallelogramGeometry.vertices[3] = arrowB.returnTipPosition();
+	      parallelogramGeometry.vertices[2].copy(parallelogramGeometry.vertices[1]).add(parallelogramGeometry.vertices[3]);
+	      parallelogramGeometry.verticesNeedUpdate = true;
+
+	      var endpoint = arrowA.returnTipPosition().cross(arrowB.returnTipPosition());
+	      var headLength = Math.min(endpoint.length()*0.6,0.3);
+	      var headWidth = Math.min(headLength*2, 0.1);
+	      crossArrow.setEndpoint(endpoint, headLength, headWidth);
+	      
+	  });
+
+
+	  var thefloorGroup = new THREE.Object3D();
+	  var thefloor = new THREE.Mesh(new THREE.PlaneGeometry(6,6,1,1), 
+					new THREE.MeshBasicMaterial({color: 'white', transparent: true, opacity: 0.8}));
+
+	  var floorTexture = new THREE.ImageUtils.loadTexture(media_url + 'image/image/square_texture.png');
+	  floorTexture.wrapS = floorTexture.wrapT = THREE.RepeatWrapping; 
+	  floorTexture.repeat.set( 16, 16 );
+	  thefloor.material.map = floorTexture;
+
+	  camera.add(thefloorGroup);
+	  thefloorGroup.add(thefloor);
+
+	  var pos = new THREE.Vector3(0,0,-1.7);
+	  camera.updateMatrixWorld();
+	  camera.worldToLocal(pos);
+	  thefloorGroup.position.copy(pos);
+	  
+	  // rotate floor to be flat relative to original camera angle
+	  var temp = Math.sqrt(camera.position.x*camera.position.x +
+			       camera.position.y*camera.position.y);
+	  thefloorGroup.rotation.x = Math.asin(camera.position.z/temp)-Math.PI/2;
+	  thefloor.scale.z=0.01;
+
+	  thefloorGroup.updateMatrixWorld();
+	  axes.updateMatrixWorld();
+
+	  var originShadowPos = axes.position.clone();
+	  thefloorGroup.worldToLocal(originShadowPos);
+
+	  var sphereAshadowPos = sphereA.position.clone();
+	  axes.localToWorld(sphereAshadowPos);
+	  thefloorGroup.worldToLocal(sphereAshadowPos);
+
+	  var arrowAshadow = new Arrow({color:"gray", origin: originShadowPos, endpoint: sphereAshadowPos, headWidth:0.15, headLength:0.3,arrowDetail:10, lineWidth: 7});
+	  thefloor.add(arrowAshadow);
+
+	  var tipA = arrowAshadow.returnDragTipSphere();
+	  tipA.position = sphereAshadowPos;
+	  tipA.shadows = sphereA;
+	  thefloor.add(tipA);
+
+
+	  var sphereBshadowPos = sphereB.position.clone();
+	  axes.localToWorld(sphereBshadowPos);
+	  thefloorGroup.worldToLocal(sphereBshadowPos);
+
+
+	      
+	  var arrowBshadow = new Arrow({color:"gray", origin: originShadowPos, endpoint: sphereBshadowPos, headWidth:0.15, headLength:0.3,arrowDetail:10, lineWidth: 7});
+	  thefloor.add(arrowBshadow);
+
+	  var tipB = arrowBshadow.returnDragTipSphere();
+	  tipB.position = sphereBshadowPos;
+	  tipB.shadows = sphereB;
+	  thefloor.add(tipB);
+
+
+	  var sphereCrossShadowPos = crossArrow.cone.position.clone();
+	  crossArrow.localToWorld(sphereCrossShadowPos);
+	  thefloorGroup.worldToLocal(sphereCrossShadowPos);
+	  
+	  
+	  var crossArrowShadow = new Arrow({color:"gray", origin: originShadowPos, endpoint: sphereCrossShadowPos, headWidth:0.15, headLength:0.3,arrowDetail:10, lineWidth: 5});
+	  thefloor.add(crossArrowShadow);
+
+	  var tipCross = crossArrowShadow.returnDragTipSphere();
+	  tipCross.position = sphereCrossShadowPos;
+	  tipCross.shadows = crossArrow.cone;
+	  thefloor.add(tipCross);
+	  
+
+	  var parallelogramShadowGeometry = new THREE.Geometry();
+	  parallelogramShadowGeometry.vertices.push(
+	      originShadowPos, 
+	      thefloorGroup.worldToLocal(arrowA.returnTipPosition()),
+	      thefloorGroup.worldToLocal(arrowA.returnTipPosition()).add(thefloorGroup.worldToLocal(arrowB.returnTipPosition()).sub(originShadowPos)),
+	      thefloorGroup.worldToLocal(arrowB.returnTipPosition()));
+	  parallelogramShadowGeometry.faces.push(new THREE.Face3(0,1,3),
+					   new THREE.Face3(1,2,3));
+	  parallelogramShadowGeometry.faceVertexUvs[0].push(
+	      new THREE.Vector2(), new THREE.Vector2(0,1),
+	      new THREE.Vector2(1,1), new THREE.Vector2(1,0)
+	  );
+	  parallelogramShadowGeometry.computeCentroids();
+	  parallelogramShadowGeometry.computeFaceNormals();
+	  parallelogramShadowGeometry.computeVertexNormals();
+	  
+	  var parallelogramShadowMaterial = new THREE.MeshBasicMaterial(
+	      {color: 'gray', transparent:true, opacity: 0.5, side: THREE.DoubleSide})
+	  var parallelogramShadow = new THREE.Mesh(parallelogramShadowGeometry, parallelogramShadowMaterial);
+	  thefloor.add(parallelogramShadow);
+	  
+	  parallelogramShadow.update = function() {
+	      parallelogramShadowGeometry.vertices[1] = thefloorGroup.worldToLocal(arrowA.returnTipPosition());
+	      parallelogramShadowGeometry.vertices[3] = thefloorGroup.worldToLocal(arrowB.returnTipPosition());
+	      parallelogramShadowGeometry.vertices[2].copy(parallelogramShadowGeometry.vertices[1]).add(parallelogramShadowGeometry.vertices[3]).sub(parallelogramShadowGeometry.vertices[0]);
+	      parallelogramShadowGeometry.verticesNeedUpdate = true;
+	  }
+	  
+
+	  var axesShadowGeometry = new THREE.Geometry;
+	  axesShadowGeometry.vertices.push(
+	      thefloorGroup.worldToLocal(axes.localToWorld(axesX1.position.clone())),
+	      thefloorGroup.worldToLocal(axes.localToWorld(axesX2.position.clone())),
+	      thefloorGroup.worldToLocal(axes.localToWorld(axesY1.position.clone())),
+	      thefloorGroup.worldToLocal(axes.localToWorld(axesY2.position.clone())),
+	      thefloorGroup.worldToLocal(axes.localToWorld(axesZ1.position.clone())),
+	      thefloorGroup.worldToLocal(axes.localToWorld(axesZ2.position.clone())));
+	  var axesShadow = new THREE.Line(axesShadowGeometry,
+					  new THREE.LineBasicMaterial({color:'gray'}),
+					  THREE.LinePieces);
+	  thefloor.add(axesShadow);
+	  
+	  axesShadow.update = function() {
+	      axesShadowGeometry.vertices[0].copy(axesX1.position);
+	      axesShadowGeometry.vertices[1].copy(axesX2.position);
+	      axesShadowGeometry.vertices[2].copy(axesY1.position);
+	      axesShadowGeometry.vertices[3].copy(axesY2.position);
+	      axesShadowGeometry.vertices[4].copy(axesZ1.position);
+	      axesShadowGeometry.vertices[5].copy(axesZ2.position);
+	      
+	      for(var i=0; i<6; i++) {
+		  thefloorGroup.worldToLocal(axes.localToWorld(axesShadowGeometry.vertices[i]));
+		  
+	      }
+	      axesShadowGeometry.verticesNeedUpdate=true;
+	  }
+
+	  // white lights
+	  var light = new THREE.DirectionalLight( 0xffffff );
+	  light.position.set( 0, 10, 0 );
+	  camera.add( light );
+	  
+	  light = new THREE.AmbientLight( 0x555555 );
+	  scene.add( light );
+	  
+	  function update_shadows() {
+	      originShadowPos.copy(axes.position);
+	      thefloorGroup.worldToLocal(originShadowPos);
+	      for(var i=0; i< thefloor.children.length; i++) {
+		  var thechild = thefloor.children[i];
+		  if(thechild.shadows) {
+		      thechild.position.copy(thechild.shadows.position);
+		      thechild.shadows.parent.localToWorld(thechild.position);
+		      thefloorGroup.worldToLocal(thechild.position);
+		      thechild.dispatchEvent({type: 'moved'});
+		  }
+	      }
+	      // some shadows need special treatment
+	      parallelogramShadow.update();
+	      // set headlength and width to match actual arrow
+	      crossArrowShadow.setLength(crossArrowShadow.returnLength(), 
+					 crossArrow.headLength, crossArrow.headWidth);
+	      axesShadow.update();
+
+	      
+	  }
+
+	  // animation loop / game loop
+	  animate();
+	  
+	  function animate() {
+	      requestAnimationFrame( animate );
+	      render();
+	      controls.update();
+	      update_shadows();
+	  }
+	  
+	  function render() {
+	      renderer.render( scene, camera );
+	  }
+
+}
+
+MathJax.Hub.Register.StartupHook("End",function () {
+jQuery('#container_three_applet_AppletCrossProduct01').empty();
+applet_three_applet_AppletCrossProduct01.run();
+});
+}
+else {
+ jQuery( ".three_applet_loading_message").remove(); jQuery( ".three_load_error" ).append('The applet did not load, and the above is only a static image representing one view of the applet. <br/> ').append(Detector.getWebGLErrorMessage())
+}
+</script>
+
+
+
+</body>
+</html>

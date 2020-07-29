@@ -4,7 +4,7 @@
   }
   
   /* The slider itself */
-  .sliderx, .sliderar, .sliderv {
+  .slider_h, .sliderar, .sliderv {
     -webkit-appearance: none;  /* Override default CSS styles */
     appearance: none;
     width: 600px; /* Full-width */
@@ -17,12 +17,12 @@
   }
   
   /* Mouse-over effects */
-  .sliderx:hover, .sliderar:hover, .sliderv:hover {
+  .slider_h:hover, .sliderar:hover, .sliderv:hover {
     opacity: 1; /* Fully shown on mouse-over */
   }
   
   /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
-  .sliderx::-webkit-slider-thumb, .sliderar::-webkit-slider-thumb,.sliderv::-webkit-slider-thumb {
+  .slider_h::-webkit-slider-thumb, .sliderar::-webkit-slider-thumb,.sliderv::-webkit-slider-thumb {
     -webkit-appearance: none; /* Override default look */
     appearance: none;
     width: 25px; /* Set a specific slider handle width */
@@ -31,7 +31,7 @@
     cursor: pointer; /* Cursor on hover */
   }
   
-  .sliderx::-moz-range-thumb,.sliderar::-moz-range-thumb,.sliderv::-moz-range-thumb {
+  .slider_h::-moz-range-thumb,.sliderar::-moz-range-thumb,.sliderv::-moz-range-thumb {
     width: 25px; /* Set a specific slider handle width */
     height: 25px; /* Slider handle height */
     background: #4CAF50; /* Green background */
@@ -47,7 +47,7 @@
     background-color: "white";
     margin: 24px -20px;
     box-shadow: none!important;
-    width: 800px;
+    width: 1080px;
     margin:auto;
     border-style: solid;
     border-color: darkcyan;
@@ -63,5 +63,35 @@
     display: inline-block;
     font-size: 16px;
   }
+.graph {
+    float:right;
+    width: 400px!important;
+    display: inline-block!important;
+    overflow: hidden;
+}
 
-  
+.demo {
+    float: left;
+    width: 200px!important;
+    display: inline-block!important;
+    overflow: hidden;
+}
+#demo{
+    width: 24%!important;
+    display: inline-block!important;
+    overflow: hidden;
+    float:left;
+    margin-right: 0px!important;
+    padding-right: 0px!important;
+}
+#graph{
+    width: 75%!important;
+    display: inline-block!important;
+    overflow: hidden;
+}
+
+ /* #graph > div, #demo > div{
+    width: 100%!important;
+    display: inline-block!important;
+    overflow: hidden;
+} */

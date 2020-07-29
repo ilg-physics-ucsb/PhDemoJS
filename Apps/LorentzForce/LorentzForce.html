@@ -1,0 +1,43 @@
+
+<head><script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+<link rel="stylesheet" href="PhDemoJS_LorentzForce.css"> 
+</head>
+
+<h2>PART 0: GETTING FAMILIAR WITH FREE FALL</h2>
+The simulation below demonstrates the free fall motion of a ball. The left hand side shows what the 
+    scene looks like to an onlooker: a ball falling straight towards the ground at increasing speed. The right 
+    hand side shows you what the respective "position v.s. time" curve would look like if you were to record this data.
+    To get a feel for the concepts in this lab, feel free to play with the sliders. Observe how increasing and decreasing
+    air resistance affects the shape of the graph! In this lab you will explore this phenomenon using your analyitical and mathematical skills.</center>
+ 
+ <br>
+ <br>
+    <center>
+    <div class="sim">
+  <div id="graph" height= "10 in"></div>
+  <button onclick="javascript:startUpdate();" class="btn" >Shoot!</button>
+  <div class="slidecontainer">  
+    <br>
+    <br>
+    <b>Starting Height:</b> <span id="slo1" class="slider_out" style="font-weight:bold;color:#000000" > 0 </span> m
+    <input type="range" min="0" max="100" value="50" class="sliders" id="sl1">
+    <br>
+    <b>Vx:</b> <span id="slo2" class="slider_out" style="font-weight:bold;color:#000000" > 10 </span> m/s
+    <input type="range" min="0" max="50" value="10" class="sliders" id="sl2">
+    <br>
+    <b>Field Strength:</b> <span id="slo3" class="slider_out" style="font-weight:bold;color:#000000" > 0 </span> T
+    <input type="range" min="-20" max="20" value="-1" class="sliders" id="sl3">
+    
+  <br>
+  <br>
+  </div>
+  
+  </center>
+  
+  </div>
+
+  <script src="PhDemoJS_LorentzForce.js"></script>
+  
+  <script src="PhDemoJS_LorentzForce_Displays.js"></script>
+  

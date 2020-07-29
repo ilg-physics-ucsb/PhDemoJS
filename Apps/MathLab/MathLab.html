@@ -1,0 +1,58 @@
+<head>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <link rel="stylesheet" href="PhDemoJS_ML.css">
+  </head>
+  <body>
+
+    <center> <br>
+      <br>
+      Below is a applet that lets you explore how plotting data against different variables changes not only the 
+      shape of a plot, but also the line of best fit. Notice that linearizing your data with the correct variable
+      results in the best possible fit, whose slope and intercept give meaningful data.
+    
+    <br>
+  </center>
+      <div class="sim">
+    <center> 
+     
+      <div id="graph"></div>
+     
+      <div class="select">
+        <select id="data" class="dropdown-content">
+          <option value="0">Select Data Set</option>
+          <option value="1">Linear</option>
+          <option value="2">Quadratic</option>
+          <option value="3">Cubic</option>
+          <option value="4">Exponential</option>
+          <option value="5">Inverse</option>
+        </select>
+        <select id="xaxis" class="dropdown-content">
+          <option value="0">Select Variable</option>
+          <option value="1">x</option>
+          <option value="2">x&#178</option>
+          <option value="3">x&sup3</option>
+          <option value="4">e&#739</option>
+          <option value="5">1/x</option>
+        </select>
+        <!-- <select id="yaxis" class="dropdown-content">
+          <option value="Audi">Audi</option>
+          <option value="BMW">BMW</option>
+          <option value="Mercedes">Mercedes</option>
+          <option value="Volvo">Volvo</option>
+        </select> -->
+        </div>
+        <div id="info">Line of Best Fit:<br>
+          
+          <span id='print_info'></span>
+        </div>
+      </div>
+    </center>
+    
+    </div>
+    </body>
+
+  <script src="https://unpkg.com/simple-statistics@7.1.0/dist/simple-statistics.js"></script>
+  <script src="MathLab_Display.js"></script>
+  <script src="MathLab.js"></script>
+
+  </html>

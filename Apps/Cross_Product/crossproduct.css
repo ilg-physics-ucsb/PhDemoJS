@@ -1,0 +1,15 @@
+#gate {
+  cursor: pointer;
+  margin-bottom: 100px;
+  width: 83px;
+  height: 46px;
+}
+
+#ball {
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+}
+
+#canvas-wrap { position:relative } /* Make this a positioned parent */
+#overlay     { position:absolute; top:20px; left:30px; }

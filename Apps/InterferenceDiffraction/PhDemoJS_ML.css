@@ -1,0 +1,136 @@
+.slidecontainer {
+  width: 600px; /* Width of the outside container */
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* The slider itself */
+.slider_h, .sliderar, .sliderv {
+  -webkit-appearance: none;  /* Override default CSS styles */
+  appearance: none;
+  width: 600px; /* Full-width */
+  height: 20px; /* Specified height */
+  background: #d3d3d3; /* Grey background */
+  outline: none; /* Remove outline */
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
+}
+
+/* Mouse-over effects */
+.slider_h:hover, .sliderar:hover, .sliderv:hover {
+  opacity: 1; /* Fully shown on mouse-over */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.slider_h::-webkit-slider-thumb, .sliderar::-webkit-slider-thumb,.sliderv::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: #4CAF50; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
+
+.slider_h::-moz-range-thumb,.sliderar::-moz-range-thumb,.sliderv::-moz-range-thumb {
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: #4CAF50; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
+
+.sim {
+  font-family: Verdana,sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #000!important;
+  box-sizing: inherit;
+  background-color: "white";
+  margin: 24px -20px;
+  box-shadow: none!important;
+  width: 1080px;
+  margin:auto;
+  border-style: solid;
+  border-color: darkcyan;
+  border-radius: 18px;
+}
+.btn {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+#demo{
+  width: 100%!important;
+  /*display: inline-block!important;*/
+  overflow: hidden;
+  margin-right: 0px!important;
+  padding-right: 0px!important;
+}
+#graph{
+  width: 100%!important;
+  display: inline-block!important;
+  overflow: hidden;
+}
+#demo2{
+width: 100%!important;
+height:40px;
+display: inline-block!important;
+overflow: hidden;
+}
+/* #graph > div, #demo > div{
+  width: 100%!important;
+  display: inline-block!important;
+  overflow: hidden;
+} */
+
+
+
+/* Dropdown Button */
+.dropbtn {
+  background-color: #3498DB;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #2980B9;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
