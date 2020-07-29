@@ -76,21 +76,4 @@ var Best_Fit={
 }
 
 
-/////////////////////////////////////Experimental hover
-var myPlot = document.getElementById('graph'),
-hoverInfo = document.getElementById('hoverinfo'),
-d3 = Plotly.d3
-
-myPlot.on('plotly_hover', function(data) { 
-  var xaxis = data.points[0].xaxis,
-  yaxis = data.points[0].yaxis;
-  var infotext = data.points.map(function(d){
-  return ('width: '+xaxis.l2p(d.x)+', height: '+yaxis.l2p(d.y));
-    });
-
-  hoverInfo.innerHTML = infotext.join('<br/>');
-  })
-.on('plotly_unhover', function(data){
-hoverInfo.innerHTML = '';
-}
-);
+/////////////////////////////////////Experimental ho
