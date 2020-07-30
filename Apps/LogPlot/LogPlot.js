@@ -141,10 +141,12 @@ log.onclick= function(){
     y_type='log'
     log.value= 'Linear-Linear'
     title="Log v.s. Log"
+    document.getElementById('eqn').innerHTML= '$log(y) ='+  entered_exponent.value+ '*log(x)'
   }else{
     y_type='linear'
     log.value= 'Log-Log'
     title="Linear v.s. Linear"
+    document.getElementById('eqn').innerHTML= '$y = x^{'+ entered_exponent.value+ '}$'
   }
  
  plot_update()
