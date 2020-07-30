@@ -63,6 +63,7 @@ function plot_update(){
   Data_Trace.x=x_live 
   Data_Trace.y=y_live
   title= title1+' v.s. '+title2
+  layout.title=title
   calculate_lin_reg()
  
   Best_Fit={
@@ -84,6 +85,7 @@ function plot_update(){
     })
 
   //Update Layout
+
   layout.title=title
   layout.xaxis=
   {
