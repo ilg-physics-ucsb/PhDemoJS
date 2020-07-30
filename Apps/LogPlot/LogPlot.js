@@ -7,7 +7,7 @@ let y_power=[], y_log=[]
 y_power[0]=0
 
 //Min step
-let s=0.3, imax=25;
+let s=0.03, imax=250;
 
 
 // Standard Normal variate using Box-Muller transform.
@@ -52,7 +52,6 @@ function plot_update(){
 
   Plain_Trace.x=x_live 
   Plain_Trace.y=y_live
-  title= title1+' v.s. '+title2
   layout.title=title
 
  
@@ -141,9 +140,11 @@ log.onclick= function(){
   if(y_type=='linear'){
     y_type='log'
     log.value= 'Linear-Linear'
+    title="Log v.s. Log"
   }else{
     y_type='linear'
     log.value= 'Log-Log'
+    title="Linear v.s. Linear"
   }
  
  plot_update()
