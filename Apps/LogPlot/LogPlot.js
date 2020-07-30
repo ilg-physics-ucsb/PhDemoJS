@@ -133,7 +133,7 @@ submit.onclick= function(){
 
   plot_update()
   document.getElementById("print_info").innerHTML= 
-  " Slope: "+ entered_exponent.value
+  " Log-Log Slope: "+ entered_exponent.value
 
 }
 

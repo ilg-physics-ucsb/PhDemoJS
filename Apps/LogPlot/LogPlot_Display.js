@@ -70,13 +70,6 @@ var Plain_Trace={
   name:'Data     ',
   hoverinfo:"x+y"
 }
-var Best_Fit={
-  x: x_fit,
-  y: y_fit,
-  mode:'lines',
-  type:'scatter',
-  name:'Line of Best Fit'
-}
 
 
 /////////////////////////////////////Experimental ho
