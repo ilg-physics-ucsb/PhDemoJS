@@ -84,6 +84,7 @@ function plot_update(){
     })
 
   //Update Layout
+  layout.title=title
   layout.xaxis=
   {
     hoverformat: '.2f',
