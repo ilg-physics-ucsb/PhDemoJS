@@ -23,10 +23,14 @@ var legend_font= {
 var x_live =[], y_live =[], x_fit=[], y_fit= []
 
 var layout = {
+  paper_bgcolor: 'rgba(0,0,0,0)',
+  plot_bgcolor: 'rgba(255,255,255,0.5)',
   hovermode:'closest',
+  pad:-0,
+  automargin:true,
   title: title,
-  autosize:true,
-  width: 800,
+  //autosize:true,
+  width: 700,
   height: 500,
   titlefont:title_font,
   xaxis: {
@@ -45,14 +49,14 @@ var layout = {
     "orientation": "h",
     x: 0.5,
     xanchor:'center',
-    y: 1.15,
+    y: 1.12,
     // xanchor:'center',
     // yanchor: 'top',
     traceorder: 'normal',
     font: legend_font,
     //bgcolor: '#FFFFF',
     bordercolor: '#FFFFFF',
-    borderwidth: 2
+    borderwidth: 0
   } 
 }
 
@@ -74,6 +78,5 @@ var Best_Fit={
   type:'scatter',
   name:'Line of Best Fit'
 }
-
 
 /////////////////////////////////////Experimental ho

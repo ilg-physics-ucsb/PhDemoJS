@@ -87,6 +87,7 @@ function plot_update(){
   //Update Layout
 
   layout.title=title
+  layout.titlefont=title_font
   layout.xaxis=
   {
     hoverformat: '.2f',
@@ -117,7 +118,7 @@ function plot_update(){
   
   
   
-Plotly.newPlot('graph', [Data_Trace, Best_Fit], layout, {displayModeBar: false})
+Plotly.newPlot('graph', [Data_Trace, Best_Fit], layout, {displayModeBar: false, responsive: true})
 plot_update()
 
 
