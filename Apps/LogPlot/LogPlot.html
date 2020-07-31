@@ -4,33 +4,33 @@
   </head>
   <body>
 
-    <center> <br>
-      <br>
-      Below is a applet that lets you explore how plotting data against different variables changes not only the 
-      shape of a plot, but also the line of best fit. Notice that linearizing your data with the correct variable
-      results in the best possible fit, whose slope and intercept give meaningful data.
     
-    <br>
-  </center>
    <div class="sim">
-    <center> 
-     
+      <div id='interactions'>
+        
+        <div class= 'blurb'>
+        
+          Below is a applet that lets you explore how plotting data against different variables changes not only the 
+          shape of a plot, but also the line of best fit. Notice that linearizing your data with the correct variable
+          results in the best possible fit, whose slope and intercept give meaningful data. 
+        </div>
+        <br>
+        <div id="form1" class='form'>
+          Power: <input type="text" name="entry1" id='entry1' class= 'entry' value="1"><br>
+          <br>
+          <span id='eqn'>$y = x$</span>
+          <br>
+          <span id='print_info'>Log-Log Slope: 1</span>
+          <br>
+          <br>
+          <input type="submit" value="Graph it" class='btn' id='submit'> <br> <input type="submit" value="Log-Log" class='btn' id='log'>
+        </div>
+ 
+      </div>
+    
       <div id="graph"></div>
 
-      <div id="form1" class='form'>
-        Power: <input type="text" name="entry1" id='entry1' class= 'entry' value="1"><br>
-        <br>
-        <span id='eqn'>$y = x$</span>
-        <br>
-        <span id='print_info'>Log-Log Slope: 1</span>
-        <br>
-        <br>
-        <input type="submit" value="Graph it" class='btn' id='submit'> <input type="submit" value="Log-Log" class='btn' id='log'>
-      </div>
-        <br>
-        <br>
-        
-      </div>   
+      
     </div>
 
     

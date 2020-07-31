@@ -26,10 +26,12 @@ var y_type= 'linear'
 var x_live =[], y_live =[], x_fit=[], y_fit= []
 
 var layout = {
+  paper_bgcolor:'rgba(0,0,0,0)',
+  plot_bgcolor:'rgba(255,255,255,0.5)',
   hovermode:'closest',
   title: title,
   autosize:true,
-  width: 800,
+  width: 700,
   height: 500,
   titlefont:title_font,
   xaxis: {

@@ -76,6 +76,7 @@ function plot_update(){
   //Update Layout
 
   layout.title=title
+  layout.titlefont=title_font
   layout.xaxis=
   {
     hoverformat: '.2f',
