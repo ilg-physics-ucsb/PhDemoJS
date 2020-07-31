@@ -17,6 +17,7 @@
   flex-wrap: nowrap;
   justify-content: center;
   background-color: rgb(168, 202, 191);
+  padding: 20px auto;
 }
 
 
@@ -28,7 +29,7 @@
 }
 #interactions{
 width: 200px;
-margin: 20px 15px;
+margin: auto 15px;
 flex-grow: 2;
 vertical-align: middle;
 
