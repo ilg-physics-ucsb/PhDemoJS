@@ -77,24 +77,17 @@ function plot_update(){
 
   layout.title=title
   layout.titlefont=title_font
-  layout.xaxis=
-  {
-    hoverformat: '.2f',
-      range:[ Math.min(...x_live),  Math.max(...x_live)],
-      title: x_label,
-      titlefont:axes_font,
-      type: y_type,
-      autorange: true
-                      }
- 
-  layout.yaxis={
-    hoverformat: '.2f',
-    range:[ Math.min(0,Math.min(...y_fit),Math.min(...y_live)), Math.max(...y_live)],
-    title: y_label,
-    titlefont:axes_font,
-    type: y_type,
-    autorange: true
-}
+  layout.xaxis.title=x_label
+  layout.xaxis.titlefont=axes_font
+  layout.yaxis.title=y_label
+  layout.yaxis.titlefont=axes_font
+  layout.xaxis.title=x_label
+  layout.yaxis.title=y_label
+  layout.xaxis.range=[1.2* Math.min(...x_live), 1.2* Math.max(...x_live)]
+
+  layout.yaxis.range=[1.2* Math.min(...y_live), 1.2* Math.max(...y_live)]
+
+
 
     Plotly.animate('graph', { data: [Plain_Trace,Best_Fit], 
       layout: layout   

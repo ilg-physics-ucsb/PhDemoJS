@@ -6,7 +6,7 @@ var blurb_font="#263D42"
 var obj_color= "8E6C88"
 var obj_font= "white"
 var marker_color="8E6C88"
-var line_color="#e38d6b"
+var line_color="burntorange"
 
 var sims=document.getElementsByClassName("sim")
 var blurbs= document.getElementsByClassName("blurb")

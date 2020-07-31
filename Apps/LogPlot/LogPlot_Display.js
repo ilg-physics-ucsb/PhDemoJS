@@ -1,23 +1,32 @@
 
+var graph_font_color= '263D42'
+var marker_color="burntorange"
+var line_color="burntorange"
 
 //Title and Axes
 var title="Linear v.s. Linear"
 var title1="Linear", title2="Linear"
 var y_label='y data', x_label="x"
+
 var axes_font = {
   family: 'Arial Black',
   size: 14,
-  color: 'rgb(56, 56, 56)'
+  color: graph_font_color
 }
 var title_font = {
   family: 'Arial Black',
   size: 20,
-  color: 'black'
+  color: graph_font_color
+}
+var tick_font = {
+  family: 'Arial Black',
+  size: 10,
+  color: graph_font_color
 }
 var legend_font= {
   family: 'Arial Black',
   size: 12,
-  color: '#000'
+  color: graph_font_color
 }
 
 var y_type= 'linear'
@@ -32,19 +41,23 @@ var layout = {
   title: title,
   autosize:true,
   width: 700,
-  height: 500,
+  height: 600,
   titlefont:title_font,
   xaxis: {
     hoverformat: '.2f',
       range:[0,  Math.max(...x_live)],
       title: x_label,
       titlefont:axes_font,
+      tickfont:tick_font,
+      linewidth:2,
                       },
   yaxis: {
       hoverformat: '.2f',
       range:[0,  Math.max(...y_live)],
       title: y_label,
       titlefont:axes_font,
+      tickfont:tick_font,
+      linewidth:2,
   },
   legend: {
     "orientation": "h",
@@ -70,7 +83,9 @@ var Plain_Trace={
   mode:'lines',
   type: 'scatter',
   name:'Data     ',
-  hoverinfo:"x+y"
+  hoverinfo:"x+y",
+  line: {color: 'orange'},
+  marker: {color: line_color}
 }
 
 

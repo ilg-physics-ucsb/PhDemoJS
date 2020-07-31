@@ -1,6 +1,6 @@
 <head>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-  <link rel="stylesheet" href="PhDemoJS_LP.css">
+  <link rel="stylesheet" href="../../src/css/PhDemoJS.css">
   </head>
   <body>
 
@@ -15,15 +15,15 @@
           results in the best possible fit, whose slope and intercept give meaningful data. 
         </div>
         <br>
-        <div id="form1" class='form'>
-          Power: <input type="text" name="entry1" id='entry1' class= 'entry' value="1"><br>
+        <div id="form1" class='blurb'>
+          Power: <input type="text" name="entry1" id='entry1' class= 'object' value="1.0">
           <br>
           <span id='eqn'>$y = x$</span>
           <br>
-          <span id='print_info'>Log-Log Slope: 1</span>
+          <span id='print_info'>Log-Log Slope: 1.0</span>
+          
           <br>
-          <br>
-          <input type="submit" value="Graph it" class='btn' id='submit'> <br> <input type="submit" value="Log-Log" class='btn' id='log'>
+          <input type="submit" value="Graph it" class='object' id='submit'> <br> <input type="submit" value="Log-Log" class='object' id='log'>
         </div>
  
       </div>
@@ -39,5 +39,6 @@
   <script src="https://unpkg.com/simple-statistics@7.1.0/dist/simple-statistics.js"></script>
   <script src="LogPlot_Display.js"></script>
   <script src="LogPlot.js"></script>
+  <script src="../../PhDemo_pallet.js"></script>
 
   </html>

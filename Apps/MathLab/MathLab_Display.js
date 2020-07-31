@@ -1,10 +1,6 @@
 // pallet
-var sim_color = '#c5e8d4'
+
 var graph_font_color= '263D42'
-var blurb_color="#63C7B2"
-var blurb_font="#263D42"
-var obj_color= "8E6C88"
-var obj_font="white"
 var marker_color="steelblue"
 var line_color="burntorange"
 
@@ -99,7 +95,7 @@ var Best_Fit={
   mode:'lines',
   type:'scatter',
   name:'Line of Best Fit',
-  line:{color: line_color}
+  line:{color: 'line_color'}
 }
 
 /////////////////////////////////////Experimental ho
