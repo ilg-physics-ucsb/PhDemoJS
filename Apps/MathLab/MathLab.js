@@ -72,7 +72,12 @@ function plot_update(){
     mode:'lines',
     name:'Line of Best Fit'
   }
-
+  layout.title=title
+  layout.titlefont=title_font
+  layout.xaxis.title=x_label
+  layout.xaxis.titlefont=axes_font
+  layout.yaxis.title=y_label
+  layout.yaxis.titlefont=axes_font
   //Update Data
   Plotly.animate('graph', { data: [Data_Trace,Best_Fit]},{
     transition: {
@@ -86,22 +91,28 @@ function plot_update(){
 
   //Update Layout
 
-  layout.title=title
-  layout.titlefont=title_font
-  layout.xaxis=
-  {
-    hoverformat: '.2f',
-      range:[1.2* Math.min(...x_live), 1.2* Math.max(...x_live)],
-      title: x_label,
-      titlefont:axes_font,
-                      }
+  
+  // layout.xaxis=
+  // {
+  //   hoverformat: '.2f',
+  //     range:[1.2* Math.min(...x_live), 1.2* Math.max(...x_live)],
+  //     title: x_label,
+  //     titlefont:axes_font,
+  //                     }
  
-  layout.yaxis={
-    hoverformat: '.2f',
-    range:[1.5* Math.min(-0.5,Math.min(...y_fit),Math.min(...y_live)), 1.2* Math.max(...y_live)],
-    title: y_label,
-    titlefont:axes_font,
-}
+  // layout.yaxis={
+  //   hoverformat: '.2f',
+  //   range:[1.5* Math.min(-0.5,Math.min(...y_fit),Math.min(...y_live)), 1.2* Math.max(...y_live)],
+  //   title: y_label,
+  //   titlefont:axes_font,
+  // }
+
+  layout.xaxis.title=x_label
+  layout.yaxis.title=y_label
+  layout.xaxis.range=[1.2* Math.min(...x_live), 1.2* Math.max(...x_live)]
+
+  layout.yaxis.range=[1.2* Math.min(...y_live), 1.2* Math.max(...y_live)]
+ 
 
     Plotly.animate('graph', { data: [Data_Trace,Best_Fit], 
       layout: layout   

@@ -22,12 +22,14 @@
 
 #graph{
   overflow: hidden;
-  padding: 0px;
+  padding-left: 20px;
+  align-content: flex-end;
 
 }
 #interactions{
 width: 200px;
 padding-top: 50px;
+margin-left:10px;
 
 }
 /* #graph > div, #demo > div{
@@ -39,33 +41,33 @@ padding-top: 50px;
 .blurb{
   position: relative;
   font-weight: bold;
-  font-size: 12;
+  font-size: 14;
   color: aliceblue;
-  padding:5px ;
+  padding:8px ;
   margin:0px;
   background-color: #007997;
   border-radius: 18px;
   width: 100%;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 #info{
   position: relative;
   font-weight: bold;
   font-size: 16;
-  padding:8px ;
+  padding:10px ;
   margin-bottom:20px;
-  background-color: #007997;
   border-radius: 18px;
   width: 100%;
 }
+
 #print_info{
   font-size: 14;
 }
 .select {
   position: relative;
   display: inline-block;
-  margin-bottom: 15px;
-  margin-top: 10px;
+  margin: 10px 10px;
   width: 100%;
 }    
 .select select {
@@ -79,7 +81,7 @@ padding-top: 50px;
       border: 0px solid #000000;
       border-radius: 10px;
       background: #b9efc5;
-      color: #2d2d2d;
+      color: white;
       /* appearance: none; */
       -webkit-appearance: none;
       -moz-appearance: none;
@@ -92,7 +94,7 @@ padding-top: 50px;
 .select select:hover,
 .select select:focus {
     color: #000000;
-    background: #b4f0ad;
+    background: #6f7e6e;
 }
 .select select:disabled {
     opacity: 0.3;

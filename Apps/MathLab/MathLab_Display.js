@@ -1,3 +1,14 @@
+// pallet
+var sim_color = '#c5e8d4'
+var graph_font_color= '263D42'
+var blurb_color="#63C7B2"
+var blurb_font="#263D42"
+var obj_color= "8E6C88"
+var obj_font="white"
+var marker_color="steelblue"
+var line_color="burntorange"
+
+
 
 
 //Title and Axes
@@ -7,17 +18,22 @@ var y_label='y data', x_label="x"
 var axes_font = {
   family: 'Arial Black',
   size: 14,
-  color: 'rgb(56, 56, 56)'
+  color: graph_font_color
 }
 var title_font = {
   family: 'Arial Black',
   size: 20,
-  color: 'black'
+  color: graph_font_color
+}
+var tick_font = {
+  family: 'Arial Black',
+  size: 10,
+  color: graph_font_color
 }
 var legend_font= {
   family: 'Arial Black',
   size: 12,
-  color: '#000'
+  color: graph_font_color
 }
 // Live Data and Fit being plotted
 var x_live =[], y_live =[], x_fit=[], y_fit= []
@@ -38,12 +54,16 @@ var layout = {
       range:[0, 1.2* Math.max(...x_live)],
       title: x_label,
       titlefont:axes_font,
+      linewidth: 2,
+      tickfont:tick_font
                       },
   yaxis: {
       hoverformat: '.2f',
       range:[0, 1.2* Math.max(...y_live)],
       title: y_label,
       titlefont:axes_font,
+      linewidth: 2,
+      tickfont:tick_font
   },
   legend: {
     "orientation": "h",
@@ -69,14 +89,17 @@ var Data_Trace={
   mode:'markers',
   type: 'scatter',
   name:'Data     ',
-  hoverinfo:"x+y"
+  hoverinfo:"x+y",
+  marker:{color: marker_color}
+  
 }
 var Best_Fit={
   x: x_fit,
   y: y_fit,
   mode:'lines',
   type:'scatter',
-  name:'Line of Best Fit'
+  name:'Line of Best Fit',
+  line:{color: line_color}
 }
 
 /////////////////////////////////////Experimental ho
