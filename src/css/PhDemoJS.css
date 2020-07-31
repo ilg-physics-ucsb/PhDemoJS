@@ -7,12 +7,15 @@
   color: #000!important;
   box-sizing: inherit;
   background-color: "white";
+  background: linear-gradient(-45deg, #c3b4af, #c5adb6, #98a8ad, #a2bea2);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
   box-shadow: none!important;
   width: 80%;
   border-style: solid;
   border-color: darkcyan;
-  border-width: 0px;
-  border-radius: 18px;
+  border-width: 1px;
+  border-radius: 15px 70px;
   display:flex;
   flex-direction: row;
   flex-wrap: row;
@@ -21,14 +24,26 @@
   background-color: rgb(168, 202, 191);
   padding: 10px 20px;
   align-items: center;
-
+  box-shadow: 50px 50px 50px 50px #888888;
+  overflow: auto;
 }
-
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+  }
+}
 
 #graph{
   overflow: hidden;
-  padding-left: 10px;
   vertical-align: middle;
+  margin-left: 40px;
+
 
 }
 #interactions{
@@ -50,28 +65,15 @@ flex-basis: auto;
   font-weight: bold;
   font-size: 14;
   color: aliceblue;
-  padding:8px ;
+  padding:15px ;
   margin:0px;
   background-color: #007997;
-  border-radius: 18px;
+  border-radius: 50px 10px;
   width: 100%;
   font-family: Arial, Helvetica, sans-serif;
   text-align: center;
 }
 
-#info{
-  position: relative;
-  font-weight: bold;
-  font-size: 16;
-  padding:10px ;
-  margin-bottom:20px;
-  border-radius: 18px;
-  width: 100%;
-}
-
-#print_info{
-  font-size: 14;
-}
 .select {
   position: relative;
   display: inline-block;

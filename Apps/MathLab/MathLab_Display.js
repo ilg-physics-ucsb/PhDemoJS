@@ -2,7 +2,7 @@
 
 var graph_font_color= '263D42'
 var marker_color="steelblue"
-var line_color="burntorange"
+
 
 
 
@@ -95,7 +95,7 @@ var Best_Fit={
   mode:'lines',
   type:'scatter',
   name:'Line of Best Fit',
-  line:{color: 'line_color'}
+  //line:{color: 'orange'}
 }
 
 /////////////////////////////////////Experimental ho

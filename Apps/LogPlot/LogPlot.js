@@ -7,7 +7,7 @@ let y_power=[], y_log=[]
 y_power[0]=0
 
 //Min step
-let s=0.03, imax=250;
+let s=0.03, imax=500;
 
 
 // Standard Normal variate using Box-Muller transform.
@@ -54,13 +54,6 @@ function plot_update(){
   Plain_Trace.y=y_live
   layout.title=title
 
- 
-  Best_Fit={
-    x: x_fit,
-    y: y_fit,
-    mode:'lines',
-    name:'Line of Best Fit'
-  }
 
   //Update Data
   Plotly.animate('graph', { data: [Plain_Trace]},{
@@ -83,10 +76,11 @@ function plot_update(){
   layout.yaxis.titlefont=axes_font
   layout.xaxis.title=x_label
   layout.yaxis.title=y_label
-  layout.xaxis.range=[1.2* Math.min(...x_live), 1.2* Math.max(...x_live)]
+  layout.xaxis.range=[1* Math.min(...x_live), 1* Math.max(...x_live)]
 
-  layout.yaxis.range=[1.2* Math.min(...y_live), 1.2* Math.max(...y_live)]
-
+  layout.yaxis.range=[1* Math.min(...y_live), 1* Math.max(...y_live)]
+  layout.xaxis.type=y_type
+  layout.yaxis.type=y_type
 
 
     Plotly.animate('graph', { data: [Plain_Trace,Best_Fit], 

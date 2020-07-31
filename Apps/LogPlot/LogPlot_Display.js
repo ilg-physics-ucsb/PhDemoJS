@@ -1,7 +1,7 @@
 
 var graph_font_color= '263D42'
-var marker_color="burntorange"
-var line_color="burntorange"
+
+
 
 //Title and Axes
 var title="Linear v.s. Linear"
@@ -84,8 +84,7 @@ var Plain_Trace={
   type: 'scatter',
   name:'Data     ',
   hoverinfo:"x+y",
-  line: {color: 'orange'},
-  marker: {color: line_color}
+  //line: {color: 'burntorange'},
 }
 
 
