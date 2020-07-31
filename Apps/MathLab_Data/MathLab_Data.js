@@ -140,10 +140,10 @@ function change_data(){
   console.log('click')
   if (plotaslog==0){
       plotaslog=1
-      log_button.innerHTML ='Linear-Linear'
+      log_button.innerHTML ='Plot as Raw Data'
   }else{
     plotaslog=0
-    log_button.innerHTML ='Log-Log'
+    log_button.innerHTML ='Plot as Log-Log'
   }
 
   change_data()
