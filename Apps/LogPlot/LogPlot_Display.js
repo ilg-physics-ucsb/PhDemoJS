@@ -1,5 +1,5 @@
 
-var graph_font_color= '263D42'
+var graph_font_color= 'bllack'
 
 
 

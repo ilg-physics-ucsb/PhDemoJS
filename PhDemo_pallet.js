@@ -1,9 +1,10 @@
 // pallet
 var sim_color = 'white'//'#c5e8d4'
 var sim_border= 'rgb(4, 54, 46)'
-var graph_font_color= '263D42'
+var graph_font_color= 'white'//'263D42'
 var blurb_color="rgba(255,255,255,0.2)"
-var blurb_font="#263D42"
+var blurb_font='white' //"#263D42"
+var blurb_font_fam= 'roboto, arial, sans-serif';
 var obj_color= "8E6C88"
 var obj_font= "white"
 var marker_color="8E6C88"
@@ -21,6 +22,7 @@ for (i=0; i<sims.length; i++){
 for (i=0; i<blurbs.length; i++){
   blurbs[i].style.backgroundColor=blurb_color
   blurbs[i].style.color=blurb_font
+  blurbs[i].style.fontFamily=blurb_font_fam
 }
 
 for (i=0; i<objs.length; i++){
