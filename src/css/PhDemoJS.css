@@ -27,6 +27,7 @@
   box-shadow: 50px 50px 50px 50px #888888;
   overflow: auto;
   justify-content: center;
+  vertical-align: middle;
 }
 @keyframes gradient {
 	0% {
@@ -44,9 +45,8 @@
   overflow: hidden;
   vertical-align: middle;
   margin-left: 40px;
-
-
 }
+
 #interactions{
 vertical-align: middle;
 width:200px;

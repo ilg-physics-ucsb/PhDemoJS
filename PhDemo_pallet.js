@@ -29,3 +29,5 @@ for (i=0; i<objs.length; i++){
   objs[i].style.backgroundColor=obj_color
   objs[i].style.color=obj_font
 }
+
+
