@@ -1,0 +1,57 @@
+<head>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <link rel="stylesheet" href="../../src/css/PhDemoJS.css">
+  </head>
+  <body>
+
+    <center> <br>
+      <br>
+     
+    
+    <br>
+  </center>
+      <div class="sim">
+     
+      <div id="interactions">
+        <center>
+          <div class='blurb'>
+           In this example, you can explore how data sets look when plotting the log of both the independent and dependent variable. Try to find the equation that describes each phenomenon
+          </div>
+        <div class="select">
+         
+          <select id="data" class="object">
+            <option value="0">Select Data Set</option>
+            <option value="1">Black Body</option>
+            <option value="2">Metabolism</option>
+          </select>
+          
+          <br>
+ 
+         
+          <button type="button" class='object' id='log' >Log-Log</button>
+
+          </div>
+          <div id="info" class='blurb'>Line of Best Fit:<br>
+            
+            <span id='print_info'></span>
+          </div>  
+      
+        </center>
+      </div>
+      <center>
+      <div id="graph"></div>
+    </center>
+     
+      
+      </div>
+    
+    
+    
+  </body>
+
+  <script src="https://unpkg.com/simple-statistics@7.1.0/dist/simple-statistics.js"></script>
+  <script src="MathLab_Data_Display.js"></script>
+  <script src="MathLab_Data.js"></script>
+  <script src="../../PhDemo_pallet.js"></script>
+
+  </html>
