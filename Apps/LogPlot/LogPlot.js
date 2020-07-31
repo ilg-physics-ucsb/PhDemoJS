@@ -83,7 +83,7 @@ function plot_update(){
   layout.yaxis.type=y_type
 
 
-    Plotly.animate('graph', { data: [Plain_Trace,Best_Fit], 
+    Plotly.animate('graph', { data: [Plain_Trace], 
       layout: layout   
     },{
       transition: {
