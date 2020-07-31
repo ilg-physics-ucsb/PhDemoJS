@@ -15,7 +15,7 @@
   border-style: solid;
   border-color: darkcyan;
   border-width: 0px;
-  border-radius: 15px 10%;
+  border-radius: 15px 10%/15px 15%;
   display:flex;
   flex-direction: row;
   flex-wrap: row;
@@ -23,10 +23,11 @@
   
   background-color: rgb(168, 202, 191);
   padding: 20px 20px;
-  align-items: center;
+  
   box-shadow: 50px 50px 50px 50px #888888;
   overflow: auto;
   justify-content: center;
+  align-items: center!important;
 
 }
 @keyframes gradient {
@@ -86,58 +87,6 @@ vertical-align: middle!important;
   width: 100%;
 }
 
-.select select {
-      font-family: 'Arial';
-      display: inline-block;
-      width: 100%; 
-      font-weight: bold;
-      cursor: pointer;
-      padding: 10px 10px;
-      outline: 0;
-      border: 0px solid #000000;
-      border-radius: 10px;
-      background: #b9efc5;
-      color: white;
-      /* appearance: none; */
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      text-align: center;
-      text-align-last:center;
-  }
-.select select::-ms-expand {
-    display: none;
-}
-.select select:hover,
-.select select:focus {
-    color: #000000;
-    background: #6f7e6e;
-}
-.select select:disabled {
-    opacity: 0.3;
-    pointer-events: none;
-}
-.select_arrow {
-  position: absolute;
-  /* top: 8px;
-  right: 15px;
-  width: 12px;
-  height: 12px; */
-  border: solid #7b7b7b;
-  border-width: 1px 3px 3px 0;
-  display: inline-block;
-  padding: 3px;
-  transform: rotate(45deg);
-  -webkit-transform: rotate(45deg);
-}
-.select select:hover ~ .select_arrow,
-.select select:focus ~ .select_arrow {
-  border-color: #000000;
-}
-.select select:disabled ~ .select_arrow {
-  border-top-color: #cccccc;
-}
-
-
 
 .object{
   font-family: 'Arial';
@@ -148,9 +97,9 @@ vertical-align: middle!important;
   padding: 10px 10px;
   margin: 10px 0px;
   outline: 0;
-  border: 0px solid #000000;
+  border: 0px solid #8E6C88;
   border-radius: 10px;
-  background: #b9efc5;
+  background: #8E6C88;
   color: white;
   /* appearance: none; */
   -webkit-appearance: none;
@@ -162,4 +111,22 @@ vertical-align: middle!important;
   -webkit-transform: scale(1.05);
         -ms-transform: scale(1.05);
         transform: scale(1.05);
+}
+
+
+.object option {
+  position: absolute;
+  background-color: inherit;
+  text-align: center;
+  text-align-last:center;
+  font-family: inherit;
+  font-weight: inherit;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  border-radius: 10px;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  padding: 5px 10px;
 }
