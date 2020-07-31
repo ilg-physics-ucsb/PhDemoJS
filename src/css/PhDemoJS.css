@@ -14,7 +14,7 @@
   border-radius: 18px;
   display:flex;
   flex-direction: row;
-  flex-flow: row wrap;
+  flex-wrap: nowrap;
   justify-content: center;
   background-color: rgb(168, 202, 191);
 }
@@ -23,12 +23,14 @@
 #graph{
   overflow: hidden;
   padding-left: 10px;
+  vertical-align: middle;
 
 }
 #interactions{
 width: 200px;
-padding-top: 50px;
-margin-left:10px;
+margin: auto 15px;
+flex-grow: 2;
+vertical-align: middle;
 
 }
 /* #graph > div, #demo > div{
