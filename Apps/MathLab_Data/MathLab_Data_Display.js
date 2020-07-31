@@ -3,7 +3,7 @@
 var graph_font_color= '263D42'
 var marker_color="steelblue"
 
-var titles=[['Select Data to Plot','Data', 'Variable'],['Black Body', 'Intensity (Unit?)', 'Temperaure (K)'],['Metabolism','BMR (Cal/24 h)','Mass (kg)']]
+var titles=[['Select Data to Plot','Data', 'Variable'],['Black Body', 'Intensity (Unit?)', 'Temperaure (K)'],['Metabolism','BMR (kJ/24 h)','Mass (kg)']]
 var logtitles= ['','Log ']
 
 

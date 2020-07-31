@@ -15,17 +15,18 @@
   border-style: solid;
   border-color: darkcyan;
   border-width: 0px;
-  border-radius: 15px 70px;
+  border-radius: 15px 10%;
   display:flex;
   flex-direction: row;
   flex-wrap: row;
   flex-flow: row wrap;
-  justify-content: center;
+  
   background-color: rgb(168, 202, 191);
-  padding: 10px 20px;
-  align-items: center;
+  padding: 20px 20px;
+  align-items: left;
   box-shadow: 50px 50px 50px 50px #888888;
   overflow: auto;
+  justify-content: center;
 }
 @keyframes gradient {
 	0% {
@@ -49,6 +50,7 @@
 #interactions{
 vertical-align: middle;
 width:200px;
+max-width:80%;
 min-width: 200px;
 flex-grow: 1;
 flex-basis: auto;
