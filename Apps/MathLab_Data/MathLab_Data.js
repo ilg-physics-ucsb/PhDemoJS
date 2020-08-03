@@ -50,7 +50,7 @@ function plot_update(){
   Data_Trace.y=y_live
   calculate_lin_reg()
  
-  Best_Fit={
+  Best_Fit_line={
     x: x_fit,
     y: y_fit,
     mode:'lines',
@@ -58,7 +58,7 @@ function plot_update(){
   }
 
   //Update Data
-  Plotly.animate('graph', { data: [Data_Trace,Best_Fit]},{
+  Plotly.animate('graph', { data: [Data_Trace,Best_Fit_line]},{
     transition: {
       duration: 500,
       easing: 'cubic-in-out'
@@ -76,7 +76,7 @@ function plot_update(){
   layout.yaxis.range=[1.2* Math.min(...y_live), 1.2* Math.max(...y_live)]
  
 
-    Plotly.animate('graph', { data: [Data_Trace,Best_Fit], 
+    Plotly.animate('graph', { data: [Data_Trace,Best_Fit_line], 
       layout: layout   
     },{
       transition: {
@@ -91,7 +91,7 @@ function plot_update(){
   
   
   
-Plotly.newPlot('graph', [Data_Trace, Best_Fit], layout, {displayModeBar: false, responsive: true})
+Plotly.newPlot('graph', [Data_Trace, Best_Fit_line], layout, {displayModeBar: false, responsive: true})
 plot_update()
 
 
