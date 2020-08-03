@@ -94,7 +94,7 @@ var Data_Trace={
   marker:{color: marker_color}
   
 }
-var Best_Fit={
+var Best_Fit_line={
   x: x_fit,
   y: y_fit,
   mode:'lines',
