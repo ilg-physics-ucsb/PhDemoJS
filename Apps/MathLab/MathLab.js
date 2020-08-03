@@ -128,7 +128,7 @@ function plot_update(){
 }
   
   
-  
+calculate_lin_reg()  
 Plotly.newPlot('graph', [Data_Trace, Best_Fit], layout, {displayModeBar: false, responsive: true})
 plot_update()
 
