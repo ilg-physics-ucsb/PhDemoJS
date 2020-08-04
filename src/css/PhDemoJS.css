@@ -1,4 +1,5 @@
 
+/* The main wrapper */
 .sim {
   margin: auto;
   font-family: Verdana,sans-serif;
@@ -7,7 +8,7 @@
   color: #000!important;
   box-sizing: inherit;
   background-color: "white";
-  background: linear-gradient(-45deg, #c3b4af, #c5adb6, #9ec4d1, #9cc29c);
+  background: linear-gradient(-45deg, #c3b4af, #c5adb6, #8aa3ac, #9cc29c);
   background-size: 400% 400%;
   animation: gradient 15s ease infinite;
   box-shadow: none!important;
@@ -30,6 +31,8 @@
   align-items: center!important;
 
 }
+
+/* Moving Gradient */
 @keyframes gradient {
 	0% {
 		background-position: 0% 50%;
@@ -41,15 +44,15 @@
 		background-position: 0% 50%;
   }
 }
-
+/* Contains Graph div */
 #graph{
   overflow: hidden;
   vertical-align: middle!important;
   margin-left: 40px;
 }
 
+/* contains interactable elements */
 #interactions{
-
 width:200px;
 max-width:80%;
 min-width: 200px;
@@ -58,12 +61,8 @@ flex-basis: auto;
 vertical-align: middle!important;
 
 }
-/* #graph > div, #demo > div{
-  width: 100%!important;
-  display: inline-block!important;
-  overflow: hidden;
-} */
 
+/* text bubble captions */
 .blurb{
   position: relative;
   font-size: 14;
@@ -80,6 +79,8 @@ vertical-align: middle!important;
   text-shadow: 0px 0px 30px #040e20f1
 }
 
+/* drop down menus */
+
 .select {
   position: relative;
   display: inline-block;
@@ -87,7 +88,7 @@ vertical-align: middle!important;
   width: 100%;
 }
 
-
+/* standard opjects */
 .object{
   font-family: 'Arial';
   display: inline-block;
@@ -130,3 +131,46 @@ vertical-align: middle!important;
   z-index: 99;
   padding: 5px 10px;
 }
+
+
+/* Sliders */
+
+
+/* The slider itself */
+.sliders {
+  -webkit-appearance: none;  /* Override default CSS styles */
+  appearance: none;
+  width: 100%!important; /* Full-width */
+  height: 20px; /* Specified height */
+  background: #d3d3d3; /* Grey background */
+  outline: none; /* Remove outline */
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
+}
+
+/* Mouse-over effects */
+.sliders:hover{
+  opacity: 1; /* Fully shown on mouse-over */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.sliders::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: #8E6C88; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+  border-radius: 5px;
+}
+
+.sliders::-moz-range-thumb {
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: #8E6C88; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+  border-radius: 5px;
+}
+}
+
