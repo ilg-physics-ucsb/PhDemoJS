@@ -33,10 +33,10 @@ var dt=Math.abs(0.025), steps=10000.0
 function B_traj(t,x0,y0){
   
   A = Math.sqrt(vx_0*vx_0 +vy_0*vy_0)*1.0
-  w = (-q_0 /m_0)*b_0*1.0
+  w = (-q_0 /m_0)*b_0
 
-  x_now =  x0+ (m_0/2)*(A/w)*Math.sin(w*t) 
-  y_now = 1.0*y0 -  (m_0/2)*(A/w)*(Math.cos(w*t)-1)
+  x_now =  x0+ (A/w)*Math.sin(w*t) 
+  y_now = 1.0*y0 -  (A/w)*(Math.cos(w*t)-1)
   vx_now =  (m_0/2)*A*Math.cos(w*t) 
   vy_now = (m_0/2)*A*Math.sin(w*t)
   return [x_now,y_now,vx_now,vy_now]
@@ -93,7 +93,7 @@ function trajectory_compute(){
       vx.push(-vx_0)
       vy.push(-vy_0)
       x.push(-1.0*(t*dt-t_out)*vx_0)
-      y.push(1.0*y_0 +2*(m_0/2)*(A/w))
+      y.push(1.0*y_0 +2*(A/w))
     //  y_cross=y[t-1]
     }
     if(x[t-1]<-40){
