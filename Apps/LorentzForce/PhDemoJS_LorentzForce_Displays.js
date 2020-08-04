@@ -169,11 +169,14 @@ Plotly.newPlot('graph', [trace_particle_traj,trace_particle],layout,{displayMode
       }
 /////////////////////////////////////////////////////////////
 ///canvas
-
+window.onresize=function(){
+  demo_draw()
+}
 function demo_draw(){
 canvas=document.getElementById('side_view')
 ctx=canvas.getContext('2d')
 ctx.clearRect(0, 0, canvas.width, canvas.height);
+canvas.width=canvas.clientWidth
 
 
 ctx.fillStyle = 'rgba(109, 109, 109, 0.9)';
@@ -191,13 +194,13 @@ ctx.stroke();
 ctx.beginPath();
 ctx.strokeStyle = 'blue';
 ctx.moveTo(30, 60);
-ctx.lineTo(300, 60)
+ctx.lineTo(canvas.width, 60)
 ctx.stroke();
 
 
 ctx.beginPath();
 ctx.strokeStyle = 'black';
-for(i=1;i<10;i++){
+for(i=1;i<canvas.width/20;i++){
 
   line_top_tip=75- Math.abs((b_0*75))
   line_bot_tip=75+ Math.abs((b_0*75))
