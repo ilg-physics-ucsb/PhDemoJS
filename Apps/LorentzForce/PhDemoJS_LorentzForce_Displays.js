@@ -180,7 +180,7 @@ canvas.width=canvas.clientWidth
 
 
 ctx.fillStyle = 'rgba(109, 109, 109, 0.9)';
-ctx.fillRect(150, 65, 300, 20);
+ctx.fillRect(150, 65, canvas.width, 20);
 ctx.fillRect(0, 50, 30, 20);
 
 ctx.beginPath();
