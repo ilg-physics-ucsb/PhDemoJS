@@ -4,8 +4,10 @@ var vel=25
 var v_target=50.0
 
 var angle_previous=0
+var angle_now=0;
 var x_previous=0
 var x_now=0
+var mu0=Math.PI*4*(10**(-7))
 
 
 function init() {
@@ -18,11 +20,14 @@ var canvas_i=document.getElementById('canvas_integral')
 var ctx_i = canvas_i.getContext('2d');
 
 ///////////////////Format Options/////////////////////////////////////
-var color_wire='rgba(191, 201, 199, 1)';
+var color_wire='rgba(191,191, 191, 1)';
 var color_rvec='rgba(100, 0, 0, 1)';
-var color_ellipse='rgba(0, 153, 255, 0.8)';
+var color_ellipse='rgba(207, 149, 149, 1)';
+var color_electron='rgba(0, 153, 255, 0.8)';
 ctx_i.lineCap = "round";
-ctx_i.font = '24px serif';
+ctx_i.font = '24px sans-serif';
+var electron_size=3;
+var wire_width=10;
 
 //////////////////Time////////////////////////////////////////////////
 
@@ -69,6 +74,8 @@ var t=abs_time(5)
   }
 
   //velocity
+  var seg_len= 2*Math.PI/3
+  var b_size= Math.abs(0.5*(vel/150))
 
 
   
@@ -85,7 +92,7 @@ function update_vel(){
 function velchange(){
   current_slider=document.getElementById('current')
   current_out=document.getElementById('currentval')
-  current_out.innerHTML=current_slider.value
+  current_out.innerHTML=(current_slider.value/100).toFixed(2)
   v_target= current_slider.value;
   t_update= 0.0001*(new Date().valueOf()-t0);
   t_ease=3*Math.abs((v_target-vel)/100.0)
@@ -120,6 +127,23 @@ function canvas_arrowhead(context, fromx, fromy, headl) {
   context.fill()
 }
 
+//ArrowHead
+function canvas_arrowhead_rot(context, tipx, tipy, headl, angle) {
+  //var headlen = 10; // length of head in pixels
+  var headlen= Math.floor(headl)
+  //context.moveTo(tipx - headlen, tipy-0.6*headlen);
+  var angle_true =angle
+  if(vel<0){
+    angle_true=angle+(1.4)*Math.PI
+
+  }
+  
+  context.moveTo(tipx, tipy);
+  context.lineTo(tipx - headlen*Math.cos(angle_true), tipy- headlen*Math.sin(angle_true));
+  context.stroke()
+}
+
+
 
 // Labeled Point Drawing function
 function labeled_point(ctx,x_p,y_p,x_l,y_l,pointsize, l_text){
@@ -141,23 +165,23 @@ function draw() {
 
   //Update Time
   t_now= 0.0001*(new Date().valueOf()-t0)
-  x_now=x_previous -vel*dt//*10
+  x_now=x_previous -vel*dt/2.5//*10
   x_previous=x_now
   
 
   ///Bottom layer wire/////////////////////////////////////////////////////////////////////
   ctx_i.beginPath();
-  ctx_i.lineWidth= 8
+  ctx_i.lineWidth= wire_width
 
   ctx_i.strokeStyle = color_wire;
-  ctx_i.fillStyle = 'blue';
+  ctx_i.fillStyle = color_electron;
 
   ctx_i.moveTo(c_c[0], c_c[1])
   ctx_i.lineTo(c_w,  c_c[1])
 
   ctx_i.stroke();
   for(i=0;i<50;i++){
-    ctx_i.arc(x_now%(0.5*c_c[0])+ (i-25)*0.04*c_c[0]+1.5*c_c[0], c_c[1], 4, 0, 2 * Math.PI, false);
+    ctx_i.arc(x_now%(0.5*c_c[0])+ (i-25)*0.04*c_c[0]+1.5*c_c[0], c_c[1], electron_size, 0, 2 * Math.PI, false);
   //canvas_arrowhead(ctx_i, ((x_now+(i+1)*0.5*c_c[0])%c_c[0] +i*c_c[0])-1, c_c[1], 10*(vel/100))
   }
   ctx_i.fill();
@@ -173,41 +197,74 @@ function draw() {
   ///Draw R ///////////////////////////////////////////////////////////////////////////
   
   ctx_i.lineWidth=3.0
-  ctx_i.strokeStyle = color_ellipse;
-  ctx_i.fillStyle = color_ellipse;
+  ctx_i.strokeStyle = 'rgba(100,100, 100, 1)';;
+  ctx_i.fillStyle = 'rgba(110,110, 110, 1)';
   ctx_i.setLineDash([10, 5])
 
 
   ctx_i.beginPath();
   ctx_i.lineWidth=3.0
   ctx_i.setLineDash([5, 5])
-  ctx_i.moveTo(c_c[0],c_c[1]-ellipse_size[1]);
+  ctx_i.moveTo(c_c[0],c_c[1]-ellipse_size[1]+5);
   ctx_i.lineTo(c_c[0],c_c[1]);
   ctx_i.stroke();
   ctx_i.setLineDash([])
   //Add Label
-  ctx_i.textAlign = 'left';
+  ctx_i.textAlign = 'center';
   ctx_i.beginPath();
-  labeled_point(ctx_i,c_c[0] + 0.2*ellipse_size[0],c_c[1]-0.4*ellipse_size[1],5,5,0, 'R')
+  labeled_point(ctx_i,c_c[0] + 0.35*ellipse_size[0],c_c[1]-0.4*ellipse_size[1],5,5,0, 'R = ')
+  labeled_point(ctx_i,c_c[0] + 0.35*ellipse_size[0],c_c[1]-0.25*ellipse_size[1],5,5,0, '10 cm')
   ctx_i.stroke();
 
-
+  
 
 
   ///Arrow Ellipse/////////////////////////////////////////////////////////////////////
-  var angle_now=(dt*vel/100+angle_previous)%(2*Math.PI);
+  
+  ctx_i.strokeStyle = 'rgba(207, 149, 149, 0.3)';
+
+  
+  
+  ctx_i.save()
+  ctx_i.lineWidth= 1.1*wire_width;
+  ctx_i.translate(0.25*c_w,0)
+  ctx_i.scale(0.5,1)
+
+  ctx_i.beginPath();
+  ctx_i.arc(c_c[0], c_c[1], ellipse_size[1] ,0,  2*Math.PI);
+  ctx_i.stroke();
+ 
+
+
+  ctx_i.strokeStyle = color_ellipse;
+  ctx_i.fillStyle = color_ellipse;
+  
+  angle_now=(dt*vel/100+angle_previous)%(2*Math.PI);
   angle_previous=angle_now
-  var seg_len= 2*Math.PI/3
-  var b_size= Math.abs(0.5*(vel/150))
+  b_size= Math.abs(0.5*(vel/150))
 
   for(i=0;i<3;i++){
     ctx_i.beginPath();
-    ctx_i.ellipse(c_c[0], c_c[1], ellipse_size[0], ellipse_size[1], Math.PI ,(i-b_size)*seg_len+ angle_now,  (i+b_size)*seg_len+angle_now);
+    //ctx_i.ellipse(c_c[0], c_c[1], ellipse_size[0], ellipse_size[1], Math.PI ,(i-b_size)*seg_len+ angle_now,  (i+b_size)*seg_len+angle_now);
+    ctx_i.arc(c_c[0], c_c[1], ellipse_size[1] ,(i-b_size)*seg_len+ angle_now,  (i+b_size)*seg_len+angle_now);
     ctx_i.stroke();
+
   }
 
+  
+  
+  for(i=0;i<3;i++){
+    ctx_i.beginPath();
+    canvas_arrowhead_rot(ctx_i,c_c[0] +ellipse_size[1]*Math.cos(angle_now+(i+Math.sign(vel)*b_size)*seg_len) ,c_c[1] + ellipse_size[1]*Math.sin(angle_now+(i+Math.sign(vel)*b_size)*seg_len),  -0.5*(vel), angle_now+(i-b_size)*seg_len)
 
-
+  }
+  ctx_i.restore()
+  ctx_i.fillStyle = color_ellipse;
+   //Add Label
+   ctx_i.textAlign = 'left';
+   ctx_i.beginPath();
+   labeled_point(ctx_i,c_c[0] + 0.5*ellipse_size[0],c_c[1]-ellipse_size[1],5,5,0, 'B = ' +(10000*vel*mu0/(2*Math.PI *0.01)).toPrecision(2)+' \u03BCT')
+   ctx_i.stroke();
 
 
 
@@ -215,10 +272,10 @@ function draw() {
  ///Top layer wire/////////////////////////////////////////////////////////////////////
 
  ctx_i.strokeStyle = color_wire;
- ctx_i.fillStyle = 'blue';
+ ctx_i.fillStyle = color_electron;
  //Path of wire
  ctx_i.beginPath();
- ctx_i.lineWidth= 8;
+ ctx_i.lineWidth= wire_width;
  ctx_i.moveTo(0, c_c[1])
  ctx_i.lineTo(c_c[0], c_c[1])
  ctx_i.stroke();
@@ -226,7 +283,7 @@ function draw() {
  ctx_i.beginPath();
  for(i=0;i<51;i++){//Draw Multiple Arrows
 
-  ctx_i.arc(x_now%(0.5*c_c[0])+ (i-25)*0.04*c_c[0]+0.5*c_c[0], c_c[1], 4, 0, 2 * Math.PI, false);
+  ctx_i.arc(x_now%(0.5*c_c[0])+ (i-25)*0.04*c_c[0]+0.5*c_c[0], c_c[1], electron_size, 0, 2 * Math.PI, false);
 
    //canvas_arrowhead(ctx_i,((x_now+(i+1)*0.5*c_c[0])%c_c[0])+0.5*c_c[0]*i, c_c[1], 0.25*(vel))
  }
@@ -240,8 +297,8 @@ function draw() {
  ctx_i.fillStyle = color_wire;
  ctx_i.beginPath();
 
- labeled_point(ctx_i, c_c[0] ,1.2*c_c[1],5,5,0, 'Current:')
- labeled_point(ctx_i, c_c[0] ,1.3*c_c[1],5,5,0, 'I = '+vel.toFixed(1)+' A')
+ labeled_point(ctx_i, c_c[0] ,1.25*c_c[1],5,5,0, 'Current:')
+ labeled_point(ctx_i, c_c[0] ,1.35*c_c[1],5,5,0, 'I = '+(vel/100).toFixed(2)+' A')
  ctx_i.moveTo(c_c[0]-0.5*vel, 1.1*c_c[1])
  ctx_i.lineTo(c_c[0]+0.5*vel, 1.1*c_c[1])
  canvas_arrowhead(ctx_i,c_c[0]+0.5*vel, 1.1*c_c[1], 0.15*(vel))

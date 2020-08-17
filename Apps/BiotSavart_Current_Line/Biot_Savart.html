@@ -1,17 +1,19 @@
 <!-- Learn about this code on MDN: https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Basic_animations -->
-<link rel="stylesheet" href="../../src/css/PhDemoJS.css">
+<link rel="stylesheet" href="PhDemoJS_BS.css">
 
 <center>
 
-<div width="500px">
-<input type="range" min="-100" max="100" value="50"  id="current" oninput="velchange()" width='500'> 
-<br>
-Current: <span id ='currentval'>50</span> A
-
-</div>
-<br>
 
 <canvas id="canvas_integral" width="500" height="500" ></canvas>
+<div id= 'slide_container' width="500px">
+
+    Change the current to see how the Magnetic Field behaves:
+    <br>
+    <input type="range" min="-100" max="100" value="50"  id="current" class="sliders" oninput="velchange()" width='500'> 
+    <br>
+    Current: <span id ='currentval'>0.5</span> A
+    
+    </div>
 </center>
 
 
