@@ -106,7 +106,9 @@ function velchange(){
 //B Strength
 
 function bs(z){
-  return (10000*vel*mu0/(2 *0.01))*((0.01)**2)/((0.01**2+z**2))**(3/2)
+
+  var rd= Math.sqrt(((0.01)**2 +z**2))
+  return 100*(10000*vel*mu0/(2 )) * (0.01)**2/rd**3
 }
 
 // Arrow drawing function
@@ -292,7 +294,7 @@ function draw() {
   //Add Label
   ctx_i.textAlign = 'left';
   ctx_i.beginPath();
-  labeled_point(ctx_i,c_c[0] + 0.3*ellipse_size[0],c_c[1]-ellipse_size[1]+4,5,5,0, 'B = ' +(bs(0.01)/(1000)).toFixed(2)+' mT')
+  labeled_point(ctx_i,c_c[0] + 0.3*ellipse_size[0],c_c[1]-ellipse_size[1]+4,5,5,0, 'B = ' +(bs(0.01)/(100)).toFixed(1)+' \u03BCT')
   ctx_i.stroke();
   ctx_i.beginPath
   ctx_i.arc(c_c[0],c_c[1]-ellipse_size[1],10,0, 2*Math.PI)
