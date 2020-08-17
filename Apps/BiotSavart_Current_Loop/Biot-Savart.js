@@ -239,7 +239,28 @@ function draw() {
   labeled_point(ctx_i,c_c[0] - 0.8*ellipse_size[0],c_c[1] + 0.1*ellipse_size[1],5,5,0, 'R = 10 cm')
   ctx_i.stroke();
 
+  ///Draw z ///////////////////////////////////////////////////////////////////////////
   
+ ctx_i.lineWidth=3.0
+ ctx_i.strokeStyle = 'rgba(100,100, 100, 1)';;
+ ctx_i.fillStyle = 'rgba(110,110, 110, 1)';
+ ctx_i.setLineDash([10, 5])
+
+
+ ctx_i.beginPath();
+ ctx_i.lineWidth=3.0
+ ctx_i.setLineDash([5, 5])
+ ctx_i.moveTo(c_c[0],c_c[1]);
+ ctx_i.lineTo(c_c[0],c_c[1]-ellipse_size[1]);
+ //ctx_i.lineTo(c_c[0]-ellipse_size[1],c_c[1]);
+ ctx_i.stroke();
+ 
+ ctx_i.setLineDash([])
+ //Add Label
+ ctx_i.textAlign = 'center';
+ ctx_i.beginPath();
+ labeled_point(ctx_i,c_c[0] + 0.8*ellipse_size[0],c_c[1] - 0.2*ellipse_size[1],5,5,0, 'z = 10 cm')
+ ctx_i.stroke();
 
 
   ///Arrow Ellipse/////////////////////////////////////////////////////////////////////
@@ -266,37 +287,16 @@ function draw() {
     ctx_i.stroke();
   }
 
+  ctx_i.fillStyle = color_ellipse;
 
-  // ctx_i.save()
-  // 
-  // ctx_i.scale(0.5,1)
-
- 
- 
-
-
-  // ctx_i.strokeStyle = color_ellipse;
-  // ctx_i.fillStyle = color_ellipse;
-  
-
-
-  
-
-  
-  
-  // for(i=0;i<3;i++){
-  //   ctx_i.beginPath();
-  //   
-
-  // }
-  // ctx_i.restore()
-  // ctx_i.fillStyle = color_ellipse;
-  //  //Add Label
-  //  ctx_i.textAlign = 'left';
-  //  ctx_i.beginPath();
-  //  labeled_point(ctx_i,c_c[0] + 0.5*ellipse_size[0],c_c[1]-ellipse_size[1],5,5,0, 'B = ' +(10000*vel*mu0/(2*Math.PI *0.01)).toPrecision(2)+' \u03BCT')
-  //  ctx_i.stroke();
-
+  //Add Label
+  ctx_i.textAlign = 'left';
+  ctx_i.beginPath();
+  labeled_point(ctx_i,c_c[0] + 0.3*ellipse_size[0],c_c[1]-ellipse_size[1]+4,5,5,0, 'B = ' +(bs(0.01)/(1000)).toFixed(2)+' mT')
+  ctx_i.stroke();
+  ctx_i.beginPath
+  ctx_i.arc(c_c[0],c_c[1]-ellipse_size[1],10,0, 2*Math.PI)
+  ctx_i.fill()
 
 
 
@@ -345,28 +345,7 @@ function draw() {
 
 
 
- ///Draw z ///////////////////////////////////////////////////////////////////////////
-  
- ctx_i.lineWidth=3.0
- ctx_i.strokeStyle = 'rgba(100,100, 100, 1)';;
- ctx_i.fillStyle = 'rgba(110,110, 110, 1)';
- ctx_i.setLineDash([10, 5])
-
-
- ctx_i.beginPath();
- ctx_i.lineWidth=3.0
- ctx_i.setLineDash([5, 5])
- ctx_i.moveTo(c_c[0],c_c[1]);
- ctx_i.lineTo(c_c[0],c_c[1]-ellipse_size[1]);
- //ctx_i.lineTo(c_c[0]-ellipse_size[1],c_c[1]);
- ctx_i.stroke();
  
- ctx_i.setLineDash([])
- //Add Label
- ctx_i.textAlign = 'center';
- ctx_i.beginPath();
- labeled_point(ctx_i,c_c[0] + 0.8*ellipse_size[0],c_c[1] - 0.2*ellipse_size[1],5,5,0, 'z = 10 cm')
- ctx_i.stroke();
 
 
 
