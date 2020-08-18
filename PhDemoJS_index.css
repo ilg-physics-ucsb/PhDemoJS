@@ -4,7 +4,7 @@
     border-width: 1px;
     border-radius: 10px;
     font-weight: bold;
-    width:auto;
+    width:80%;
     display: inline-block;
     padding:10px
 }
@@ -18,12 +18,35 @@ body{
     margin:auto;
     border-style: solid;
     border-color: rgb(173, 160, 185);
-    width:90%;
-    border-radius: 100px;
+    width:92%;
+    border-radius: 0px;
     border-width: 2px;
     padding: 20px 0px;
-    margin:20px auto
+    margin:1px auto
 
 
 }
 
+.w3-btn {
+    width:90%;
+    margin: 5px auto;
+    background-color: rgb(156, 116, 116);
+    text-align: center!important;
+    color:white!important;
+    font-weight: bold;
+}
+
+.w3-btn :hover {
+
+    background-color: rgb(119, 106, 106);
+}
+
+.narrow{
+    width: 700px;
+    margin: auto;
+    border-style: solid;
+    border-color: rgb(173, 160, 185);
+    border-radius: 0px;
+    border-width: 2px;
+    padding: 20px ;
+}
