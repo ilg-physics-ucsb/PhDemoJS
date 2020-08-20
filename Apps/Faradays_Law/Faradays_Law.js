@@ -51,6 +51,7 @@ function labeled_point(ctx,x_p,y_p,x_l,y_l,pointsize, l_text){
 ///////////////////////////Draw Loop////////////////////////////////////////////////////
 
 function draw() {
+  ctx.textAlign = 'left';
   
   //Clear draw area
   ctx.globalCompositeOperation = 'source-over';
@@ -60,10 +61,45 @@ function draw() {
   ctx.beginPath();
   ctx.rect(0.5*c_w, 0,0.5*c_w,c_h, false);
   ctx.fill();
+  
+ 
+  ctx.fillStyle='black'
+  ctx.beginPath();
+  labeled_point(ctx, 20 ,20 ,5,5,0, 'Click and Drag coil'  )
+  for(i=0;i<10;i++){
 
+    for(j=0;j<5;j++){
+      ctx.beginPath();
+      labeled_point(ctx,0.5*c_w*(1+j/5)+10 ,c_h*(i/10)+30 ,5,5,0, 'X'  )
+    
+    }
+
+  }
+ 
+
+
+  ctx.fillStyle='rgba(181,181,181,0.3)'
   ctx.beginPath();
   ctx.rect(l_x, l_y,100,100, false);
   ctx.stroke();
+  ctx.fill()
+
+
+
+
+
+
+  ctx.fillStyle='rgba(181,181,181,1)'
+  ctx.beginPath();
+  ctx.arc(l_x, l_y+50,20,0, 2*Math.PI, false);
+  ctx.stroke();
+  ctx.fill()
+
+
+  ctx.fillStyle='black'
+  ctx.textAlign = 'center';
+  ctx.beginPath()
+  labeled_point(ctx, l_x-5, l_y+55 ,5,5,0, 'V'  )
 
   A_in=Math.min(100,Math.max(0, -0.5*c_w+l_x+100))
  
@@ -76,23 +112,6 @@ function draw() {
   dA.shift()
   dA.push(0.005*(As[As.length-4] +As[As.length-3]-As[As.length-2] -As[As.length-1])/(0.01) )
 
-  ctx.fillStyle='black'
-
-  
-
-
-
-  labeled_point(ctx,20 ,20 ,5,5,0, 'Click and Drag coil'  )
-
-  for(i=0;i<10;i++){
-
-    for(j=0;j<5;j++){
-
-      labeled_point(ctx,0.5*c_w*(1+j/5)+10 ,c_h*(i/10)+30 ,5,5,0, 'X'  )
-    
-    }
-
-  }
  
   Plotly.animate('graph', 
   {
