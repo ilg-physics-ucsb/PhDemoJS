@@ -74,7 +74,7 @@ function draw() {
   As.shift()
   As.push(A_in)
   dA.shift()
-  dA.push(0.005*(As[As.length-2] -As[As.length-1])/(ts[ts.length-2]-ts[ts.length-1]) )
+  dA.push(0.005*(As[As.length-4] +As[As.length-3]-As[As.length-2] -As[As.length-1])/(0.01) )
 
   ctx.fillStyle='black'
 
@@ -125,9 +125,31 @@ canvas.addEventListener('mousemove', function (ev){
   if (mouseisdown){
   l_x=ev.clientX - canvas.offsetLeft-50
   l_y=ev.clientY - canvas.offsetTop-50
+
+  
+  }
+ 
+
+})
+
+canvas.addEventListener('touchstart', function (ev){
+  mouseisdown=true
+  
+})
+canvas.addEventListener('touchend', function (ev){
+  mouseisdown=false
+
+
+})
+canvas.addEventListener('touchmove', function (ev){
+
+  if (mouseisdown){
+  l_x=ev.touches[0].clientX - canvas.offsetLeft-50
+  l_y=ev.touches[0].clientY - canvas.offsetTop-50
   }
 
 })
+
 
 init();
 
@@ -138,7 +160,8 @@ trace_v={
   x:index,
   y:dA,
   mode:'lines',
-  line: {shape: 'spline'}
+  line: {shape: 'spline'},
+  'smoothing': 1.3
 }
 
 
