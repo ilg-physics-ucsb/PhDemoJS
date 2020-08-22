@@ -214,11 +214,13 @@ function draw() {
 
 
 /////////Canvas Mouse and Touch Events///////////////////////////////////////////////////
-
+window.onresize=function (){
+  rect = canvas.getBoundingClientRect()
+}
 canvas.addEventListener('mousedown', function (ev){
-  
+
   mouseisdown=true
-  console.log(mouseisdown)
+
   l_x=ev.pageX - rect.left-0
   l_y=ev.pageY - rect.top-50
   
@@ -246,8 +248,8 @@ canvas.addEventListener('touchend', function (ev){
 
 canvas.addEventListener('touchmove', function (ev){
   if (mouseisdown){
-  l_x=ev.touches[0].clientX - canvas.offsetLeft-50
-  l_y=ev.touches[0].clientY - canvas.offsetTop-50
+  l_x=ev.touches[0].clientX - rect.left-0
+  l_y=ev.touches[0].clientY - rect.top-0
   checkandrun()
   }
 })
