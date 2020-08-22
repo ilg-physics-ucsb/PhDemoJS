@@ -45,11 +45,7 @@
   }
 }
 /* Contains Graph div */
-#graph{
-  overflow: hidden;
-  vertical-align: middle!important;
-  margin-left: 40px;
-}
+
 
 /* contains interactable elements */
 #interactions{
@@ -176,11 +172,31 @@ vertical-align: middle!important;
 
 #slide_container{
   font-family: Arial, Helvetica, sans-serif;
-  width: 700px;
+  width: 660px;
   border-style: solid;
   border-width: 2px;
   border-color: #8E6C88;
   border-radius: 5px;
   padding: 20px;
   margin: 20px;
+}
+
+#simcontainer{
+  font-family: Arial, Helvetica, sans-serif;
+  width: 700px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #8E6C88;
+  border-radius: 5px;
+  padding: 20x;
+  margin: 0;
+
+}
+
+#canvas_FL{
+  border: 0px solid #8E6C88;
+}
+#graph{
+  width: 700px;
+  align-items: center;
 }

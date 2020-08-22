@@ -6,14 +6,22 @@
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
 <center>
-
-
-<canvas id="canvas_FL" width="500" height="500" ></canvas>
-<div id='graph'></div>
-<div id= 'slide_container' width="500px">
+<div id= 'slide_container' >
     
-    Options go here
-    
+        This applet contains a classic demonstration of Faraday's Law, where an EMF is generated across the voltmeter as you 
+        drag the coil into a plane with a uniform magnetic field. The reading on the bottom shows the resulting EMF in real time. 
+        You can click and drag the coil, as well as change its area, as well as the value and direction of the magnetic field.
+</div>
+<div id= 'simcontainer' >
+    <canvas id="canvas_FL" width="700" height="300" ></canvas>
+    <div id='graph'></div>
+</div>
+<div id= 'slide_container' >    
+    <b>Area:</b> <span id="a_o" style="font-weight:bold" > 1 </span> m&sup2; <br>
+    <input type="range" min="10" max="100" value="10" class="sliders" id="a_sl"> <br>
+
+    <b>Magnetic Field:</b> <span id="bf_o" style="font-weight:bold" > 0.1 </span> T <br>
+    <input type="range" min="-10" max="10" value="1" class="sliders" id="bf_sl">
 </div>
 </center>
 

@@ -1,28 +1,42 @@
 
 function init() {
+  running=true
   window.requestAnimationFrame(draw);
 }
+
+function checkandrun(){
+  if(!running){
+    running=true
+    window.requestAnimationFrame(draw);
+  }
+}
+
  
 //Loop data
-var xs=[],ts=[],index=[], As=[], dA=[]
+var index=[], As=[1,1,1,1], dA=[], zeroes=[]
 var tk=0.0001
 var t_load=tk*(new Date().valueOf())
 var A_in=0
+var A_now=1
+var B_now=0.1
+var do_update=true
+var running=false
 
-for(i=0;i<100;i++){
+for(i=0;i<200;i++){
   index[i]=i
-  xs[i]=0
-  ts[i]=0
-  As[i]=0
-  dA[i]=0
+  dA[i]=0.01
+  zeroes[i]=0
 }
+
 
 ///user flags
 var mouseisdown=false
+var Bf=[0.1,0.1,0.1,0.1]
 
 ////////////////////Canvas Variables//////////////////////////////////
 var canvas=document.getElementById('canvas_FL')
 var ctx = canvas.getContext('2d');
+var rect = canvas.getBoundingClientRect();
 
 //Get Canvas Size
 var c_w=canvas.width//get canvas size
@@ -52,20 +66,43 @@ function labeled_point(ctx,x_p,y_p,x_l,y_l,pointsize, l_text){
 
 function draw() {
   ctx.textAlign = 'left';
-  
+
+  A_in=Math.min(100,Math.max(0, -0.5*c_w+l_x+100))*A_now/100
+  As.shift()
+  As.push(A_in)
+
+  Bf.shift()
+  Bf.push(B_now )
+
+  dA.shift()
+  dA.push(0.1*(As[0]*Bf[0] +As[1]*Bf[1]-As[2]*Bf[2]-As[3]*Bf[3])/(0.01) )
+ 
+  update=false
+
+  for(i=0;i<dA.length;i++){
+    if(dA[i]!=zeroes[i]){
+      update=true
+      break
+    }
+  }
+
+  if(update){
+
   //Clear draw area
   ctx.globalCompositeOperation = 'source-over';
   ctx.clearRect(0, 0, c_w, c_h); // clear canvas
+  
 
-  ctx.fillStyle='grey'
+
+  
+  ctx.fillStyle='rgba(147, 189, 147,1)'
   ctx.beginPath();
   ctx.rect(0.5*c_w, 0,0.5*c_w,c_h, false);
   ctx.fill();
   
  
-  ctx.fillStyle='black'
-  ctx.beginPath();
-  labeled_point(ctx, 20 ,20 ,5,5,0, 'Click and Drag coil'  )
+  ctx.fillStyle='rgb(113, 142, 97)'
+
   for(i=0;i<10;i++){
 
     for(j=0;j<5;j++){
@@ -78,16 +115,17 @@ function draw() {
  
 
 
-  ctx.fillStyle='rgba(181,181,181,0.3)'
+  ctx.fillStyle='rgba(255, 210, 132,1)'
+  ctx.strokeStyle='black'
+  ctx.lineWidth= 5
   ctx.beginPath();
   ctx.rect(l_x, l_y,100,100, false);
   ctx.stroke();
+  ctx.globalCompositeOperation = 'exclusion';
   ctx.fill()
 
 
-
-
-
+  ctx.globalCompositeOperation = 'source-over';
 
   ctx.fillStyle='rgba(181,181,181,1)'
   ctx.beginPath();
@@ -96,21 +134,22 @@ function draw() {
   ctx.fill()
 
 
+
   ctx.fillStyle='black'
   ctx.textAlign = 'center';
   ctx.beginPath()
   labeled_point(ctx, l_x-5, l_y+55 ,5,5,0, 'V'  )
+  ctx.font = '18px sans-serif';
 
-  A_in=Math.min(100,Math.max(0, -0.5*c_w+l_x+100))
+  
+  ctx.beginPath()
+  labeled_point(ctx, l_x+55, l_y+20 ,5,5,0, '\u03D5 = '  )
+  labeled_point(ctx, l_x+55, l_y+50 ,5,5,0,  (Bf[3]*A_in).toFixed(2) )
+  labeled_point(ctx, l_x+55, l_y+80 ,5,5,0,   ' T m\u00B2'  )
  
-  xs.shift()
-  xs.push(l_x)
-  ts.shift()
-  ts.push(tk*new Date().valueOf()-t_load)
-  As.shift()
-  As.push(A_in)
-  dA.shift()
-  dA.push(0.005*(As[As.length-4] +As[As.length-3]-As[As.length-2] -As[As.length-1])/(0.01) )
+ 
+  ctx.globalCompositeOperation = 'source-over';
+  ctx.font = '24px sans-serif';
 
  
   Plotly.animate('graph', 
@@ -125,13 +164,30 @@ function draw() {
       redraw: false
     }
   })
+
+  ctx.textAlign = 'center';
+
+  labeled_point(ctx, 0.25*c_w, c_h-30 ,5,5,0, 'B = 0'  )
+  labeled_point(ctx, 0.75*c_w, c_h-30 ,5,5,0, 'B = '+ B_now.toFixed(1) +'T'  )
+
   window.requestAnimationFrame(draw);
+}else{
+  
+  running=false
+}
+  
+
 }
 
 //Canvas Mouse Events
 
 canvas.addEventListener('mousedown', function (ev){
+  
   mouseisdown=true
+  console.log(mouseisdown)
+  l_x=ev.pageX - rect.left-50
+  l_y=ev.pageY - rect.top-50
+  
   
 })
 canvas.addEventListener('mouseup', function (ev){
@@ -142,10 +198,10 @@ canvas.addEventListener('mouseup', function (ev){
 canvas.addEventListener('mousemove', function (ev){
 
   if (mouseisdown){
-  l_x=ev.clientX - canvas.offsetLeft-50
-  l_y=ev.clientY - canvas.offsetTop-50
-
-  
+  l_x=ev.pageX - rect.left-50
+  l_y=ev.pageY - rect.top-50
+  checkandrun()
+ 
   }
  
 
@@ -165,6 +221,7 @@ canvas.addEventListener('touchmove', function (ev){
   if (mouseisdown){
   l_x=ev.touches[0].clientX - canvas.offsetLeft-50
   l_y=ev.touches[0].clientY - canvas.offsetTop-50
+  checkandrun()
   }
 
 })
@@ -189,23 +246,28 @@ trace_v={
 var layout = {
   showgrid: false,
   showlegend:false,
-  title:"Live EMF",
+  //title:"Live EMF",
     legend: {
       x: 1,
       xanchor: 'right',
       y: 1
     },
     xaxis: {
-      title: "current time",
+      title: "Live EMF (V)",
       showline: false,
       showgrid: true,
       zeroline: true,
       ticks: '',
       showticklabels: false},
+      font: {
+        family: 'Arial, san-serif',
+        size: 18,
+        color: '#7f7f7f'}
+      ,
     
     yaxis: {
-      title: "EMF (V)",
-      range: [-110, 110],
+      //title: "EMF (V)",
+      range: [-30, 30],
       showline: false,
       showgrid: true,
       zeroline: false,
@@ -213,15 +275,40 @@ var layout = {
       showticklabels: false
       },
     autosize: false,
-    height:300,
+    height:200,
+    width: 650,
     margin: {
-      l: 50,
-      r: 50,
+      l: 0,
+      r: 0,
       b: 50,
-      t: 50,
+      t: 10,
       pad: 4
     },
     paper_bgcolor: 'rgba(255,255,255,0)',
     plot_bgcolor: 'rgba(255,255,255,0)'
   };
-  Plotly.newPlot('graph', [trace_v],layout,{displayModeBar: false})
+  Plotly.newPlot('graph', [trace_v],layout,{displayModeBar: false, scrollZoom: true})
+
+
+  b_slider=document.getElementById('bf_sl')
+  b_out=document.getElementById('bf_o')
+  b_out.innerHTML=b_slider.value/10
+  b_slider.oninput= function(){
+
+    
+    b_out.innerHTML=b_slider.value/10
+    B_now=b_slider.value/10
+    checkandrun()
+
+  }
+
+  a_slider=document.getElementById('a_sl')
+  a_out=document.getElementById('a_o')
+  a_out.innerHTML=a_slider.value/10
+  a_slider.oninput= function(){
+
+    a_out.innerHTML=a_slider.value/10
+    A_now=a_slider.value/10
+    checkandrun()
+
+  }
