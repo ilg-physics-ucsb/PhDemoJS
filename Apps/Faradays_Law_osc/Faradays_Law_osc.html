@@ -1,0 +1,25 @@
+<!-- Learn about this code on MDN: https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Basic_animations -->
+<head>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="Faradays_Law_osc.css">
+</head>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+<center>
+<div id= 'slide_container' >
+    
+        As your coil oscillates, as it slows down and experiences random jittering, it maps out the phase space of EMF v.s. angular momentum. 
+        The maximum and mimum values obtainable for each combination of EMF and angular momentum, or the envelope, 
+        falls on the line with slope NBA. The plot below shows a slower, simplified picture of what you will see on your parametric plot.
+        <br>
+        <button class='object' onclick='init()'>Run</button>
+</div>
+<div id= 'simcontainer' >
+    <div id='graph'></div>
+</div>
+
+</center>
+
+
+<script src="Faradays_Law_osc.js"></script>
+
