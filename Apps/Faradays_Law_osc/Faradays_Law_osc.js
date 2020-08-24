@@ -1,18 +1,4 @@
 
-function init() {
-  running=true
-  window.requestAnimationFrame(draw);
-}
-
-function checkandrun(){
-  if(!running){
-    running=true
-    window.requestAnimationFrame(draw);
-  }
-}
-
-
- 
 //Loop data
 var A_in=0
 var A_now=1
@@ -26,6 +12,31 @@ var NBA=5
 
 var omega=[0], theta=[Math.PI], vcoil=[0],t_now=[0]
 
+function init() {
+  update=false
+  omega=[0] 
+  theta=[Math.PI] 
+  vcoil=[0]
+  t_now=[0]
+  t=0
+
+  trace_v={
+    x:omega,
+    y:vcoil,
+    mode:'lines',
+    line: {shape: 'spline'},
+    'smoothing': 1.3
+  }
+  checkandrun()
+}
+
+function checkandrun(){
+  if(!running){
+    running=true
+    update=true
+    window.requestAnimationFrame(draw);
+  }
+}
 
 
 
@@ -48,18 +59,24 @@ function randone(s){
 ///////////////////////////Draw Loop////////////////////////////////////////////////////
 
 function draw() {
-
-  //if nonzero data, redraw
-  if(t<5000){ 
+ 
+  if(t<5000 && update){ 
+    
     t=t+1
     t_now.push(t_now[t-1]+0.05*randone(0.1))
+    console.log(t_now[t])
     dtt= t_now[t]-t_now[t-1]
 
-  
     theta.push( Math.PI*(1-t_now[t]/300)*Math.cos(t_now[t]))
     omega.push((theta[t]-theta[t-1])/(dtt))
     vcoil.push(NBA*omega[t]*Math.sin(theta[t]))
-    //Clear draw area
+    trace_v={
+      x:omega,
+      y:vcoil,
+      mode:'lines',
+      line: {shape: 'spline'},
+      'smoothing': 1.3
+    }
 
     //Update plotly data
     Plotly.animate('graph', 
@@ -84,20 +101,10 @@ function draw() {
 }
 
 
-/////////Canvas Mouse and Touch Events///////////////////////////////////////////////////
-
-
-
-
-
-
-
-
-
 /////////Plotly Stuff///////////////////////////////////////////////////////////////
 
 ////////Trace
-trace_v={
+var trace_v={
   x:omega,
   y:vcoil,
   mode:'lines',
@@ -105,13 +112,13 @@ trace_v={
   'smoothing': 1.3
 }
 
-trace_line={
+var trace_line={
   x:[-10,10],
   y:[-NBA*10, NBA*10],
   mode:'lines',
 }
 
-trace_line2={
+var trace_line2={
   x:[-10,10],
   y:[NBA*10, -NBA*10],
   mode:'lines',
