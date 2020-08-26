@@ -168,9 +168,12 @@ function draw() {
 
 
     //Label the Voltmeter
+    ctx.font = '18px sans-serif';
     ctx.fillStyle='black'
     ctx.beginPath()
-    labeled_point(ctx, l_x-5, l_y+55 ,5,5,0, 'V'  )
+    labeled_point(ctx, l_x-5, l_y+35 ,5,5,0, '-'  )
+    labeled_point(ctx, l_x-5, l_y+50 ,5,5,0, 'V'  )
+    labeled_point(ctx, l_x-5, l_y+63 ,5,5,0, '+'  )
     
 
     //Display the current flux through the coil
