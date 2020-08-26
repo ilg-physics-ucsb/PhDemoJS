@@ -134,7 +134,7 @@ var layout = {
       y: 1
     },
     xaxis: {
-      title: "EMF (V) v.s. Angular Momentum (rad/s)",
+      title: "EMF (V) v.s. Angular Velocity (rad/s)",
       range:[-10.2,10.2],
       showline: true,
       showgrid: true,
