@@ -1,0 +1,24 @@
+<!-- Learn about this code on MDN: https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Basic_animations -->
+<link rel="stylesheet" href="app.css">
+
+<center>
+
+
+<canvas id="sim_canvas" width="500" height="500" ></canvas>
+<div id= 'slide_container' width="500px">
+
+    Changing the tube length changes the volume as it goes through harmonics. Add more description here to 
+    say interesting things that will increase student learning. Filler text blah blah. Add more description here to 
+    say interesting things that will increase student learning. Filler text blah blah
+    <br>
+    <br>
+    <input type="range" min="-200" max="200" value="0"  id="length" class="sliders" oninput="changelen()" width='500'> 
+    <br>
+   <b> Current: <span id ='currentval'>1.00</span> m</b>
+    
+    </div>
+</center>
+
+
+<script src="app.js"></script>
+
