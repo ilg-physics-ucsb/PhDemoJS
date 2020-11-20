@@ -202,7 +202,7 @@ draw()
 
 function changelen(){
   slider_len=len_slider.value
-  document.getElementById("currentval").innerHTML= (2+0.01*len_slider.value).toFixed(2)
+  document.getElementById("currentval").innerHTML= (0.5*(2+0.01*len_slider.value)).toFixed(2)
 }
 
 
