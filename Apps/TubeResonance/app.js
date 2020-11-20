@@ -20,7 +20,8 @@ g.connect(audioCtx.destination)
 
 
 ///////////////////Format Options/////////////////////////////////////
-var color_tube='rgba(191,191, 191, 1)';
+var color_tube='rgba( 17, 17, 17, 0.4)';
+var color_tube_end='rgba(191,191, 191, 1)';
 
 //////////////////Time////////////////////////////////////////////////
 
@@ -112,36 +113,37 @@ function labeled_point(ctx,x_p,y_p,x_l,y_l,pointsize, l_text){
 
 ///////////////////////////Draw Loop////////////////////////////////////////////////////
 
+var ear_img=new Image()
+ear_img.src='https://kapawlak.github.io/PhDemoJS/Apps/TubeResonance/ear.png'
 
+var spk_img=new Image()
+spk_img.src='https://kapawlak.github.io/PhDemoJS/Apps/TubeResonance/speaker.png'
 
 
 function draw() {
   
   //Clear draw area
- // ctx_i.globalCompositeOperation = 'source-over';
+  // ctx_i.globalCompositeOperation = 'source-over';
   ctx_i.clearRect(0, 0, c_w, c_h); // clear canvas
+  ctx_i.lineWidth = 2;
+
+  //Image Draw
+  
+  ctx_i.drawImage(ear_img, 0.53*c_w+1*slider_len,0.45*c_h,40,50)
+  ctx_i.drawImage(spk_img, 0,0.45*c_h,35,45)
 
 
-  //Tube Draw
-  ctx_i.strokeStyle = "black";
-  ctx_i.fillStyle = color_tube;
-  ctx_i.beginPath();
-  ctx_i.rect(50 , 0.4*c_h, 0.4*c_w+1*slider_len, 0.2*c_h);
-  ctx_i.stroke();
-  ctx_i.fill()
-
-
-
+ //Cosine wave draw
   ctx_i.beginPath();
   ctx_i.strokeStyle = "blue";
-  ctx_i.moveTo(50,0.4*c_h)
+  ctx_i.moveTo(50,0.6*c_h)
   for(i=1;i<1000;i++){
     dx=i*(0.4*c_w+1*slider_len)/1000
     ctx_i.lineTo(50+dx+1,0.5*c_h+0.1*c_h*Math.cos(Math.PI*dx/lambda))
   }
   ctx_i.stroke();
 
-  //Cosine wave draw
+ 
   ctx_i.strokeStyle = "red";
   ctx_i.beginPath();
   ctx_i.moveTo(50,0.4*c_h)
@@ -151,6 +153,53 @@ function draw() {
   }
   ctx_i.stroke();
 
+  //Tube Draw
+    ctx_i.fillStyle = color_tube;
+    ctx_i.beginPath();
+    ctx_i.rect(50 , 0.4*c_h, 0.4*c_w+1*slider_len, 0.2*c_h);
+    ctx_i.fill()
+  
+    
+    ctx_i.lineWidth = 2;
+   
+   
+
+    ////Tube Caps ///////////////////////////////////////////////////
+    ctx_i.strokeStyle='black'
+    ctx_i.fillStyle = color_tube_end;
+    ctx_i.beginPath();
+    ctx_i.lineWidth = 2;
+    ctx_i.ellipse(50, 0.5*c_h, 10, 0.1*c_h, 0, 0,2* Math.PI )
+    ctx_i.stroke();
+    ctx_i.fill();
+  
+    ctx_i.fillStyle = color_tube;
+    ctx_i.beginPath();
+    ctx_i.ellipse(50+0.4*c_w+1*slider_len, 0.5*c_h, 10, 0.1*c_h, 0,-0.5*Math.PI,0.5*Math.PI )
+    ctx_i.stroke();
+    ctx_i.fill()
+  
+    ctx_i.fillStyle = 'rgb(95,95,95)'
+    ctx_i.strokeStyle='rgb(75,75,75)'
+    ctx_i.setLineDash([5, 5]);
+    ctx_i.beginPath();
+    ctx_i.ellipse(50+0.4*c_w+1*slider_len, 0.5*c_h, 10, 0.1*c_h, Math.PI, -0.5* Math.PI,0.5* Math.PI )
+    ctx_i.stroke();
+    ctx_i.strokeStyle='black'
+  
+  
+    ctx_i.setLineDash([]);
+    
+    ctx_i.beginPath()
+    ctx_i.moveTo(50 , 0.4*c_h)
+    ctx_i.lineTo(50+0.4*c_w+1*slider_len,0.4*c_h)
+    ctx_i.moveTo(50 , 0.6*c_h) 
+    ctx_i.lineTo(50+0.4*c_w+1*slider_len,0.6*c_h)
+    ctx_i.stroke()
+
+
+    ///////////////////////////////////////////////////////  
+    ctx_i.lineWidth = 1;
   // Volume Meter Draw
   ctx_i.strokeStyle = "black";
   ctx_i.fillStyle = "white";
@@ -167,8 +216,6 @@ function draw() {
   ctx_i.stroke();
 
   volume.shift()
-  //volume.push(50*Math.cos(Math.PI*((0.4*c_w+1*slider_len))/lambda))
-
   volume.push(volume_func(Math.cos(Math.PI*((0.4*c_w+1*slider_len))/(0.5*lambda))))
 
   //g.gain.value=0.01*volume[voldivs-1]
