@@ -199,15 +199,15 @@ function draw() {
 
 
     ///////////////////////////////////////////////////////  
-    ctx_i.lineWidth = 1;
+  ctx_i.lineWidth = 3;
   // Volume Meter Draw
   ctx_i.strokeStyle = "black";
   ctx_i.fillStyle = "white";
   ctx_i.beginPath();
-  ctx_i.rect(20 , 0.7*c_h-1, c_w-40, 0.2*c_h +2);
+  ctx_i.rect(20 , 0.7*c_h-5, c_w-40, 0.2*c_h +10);
   ctx_i.stroke();
   ctx_i.fill()
-  
+  ctx_i.lineWidth = 1.5;
   ctx_i.beginPath();
   ctx_i.moveTo(21,0.8*c_h-volume[0])
   for(i=0;i<voldivs;i++){
@@ -223,11 +223,11 @@ function draw() {
   g.gain.value=0.01*(volume[voldivs-1]+50)
   }
 
-
+  
   ctx_i.strokeStyle = "blue";
   ctx_i.fillStyle = "blue";
   ctx_i.beginPath();
-  ctx_i.rect(c_w-25 , 0.7*c_h-2, 20, 0.2*c_h +4);
+  ctx_i.rect(c_w-25 , 0.7*c_h-6, 20, 0.2*c_h +12);
   ctx_i.stroke();
   ctx_i.fill()
 
@@ -235,9 +235,13 @@ function draw() {
 
   ctx_i.fillStyle = "white";
   ctx_i.beginPath();
-  ctx_i.rect(c_w-25 , 0.7*c_h-1, 20,50- volume[voldivs-1]);
+  ctx_i.rect(c_w-24 , 0.7*c_h-4, 18,50- volume[voldivs-1]);
   ctx_i.fill()
 
+  ctx_i.font = "20px Georgia";
+  ctx_i.textAlign = "center";
+  ctx_i.fillStyle='black'
+  ctx_i.fillText('perceived volume', c_w/2, 0.95*c_h)
   
 
   window.requestAnimationFrame(draw);
