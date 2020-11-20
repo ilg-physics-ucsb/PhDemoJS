@@ -132,14 +132,14 @@ function draw() {
 
 
 
-  // ctx_i.beginPath();
-  // ctx_i.strokeStyle = "blue";
-  // ctx_i.moveTo(50,0.4*c_h)
-  // for(i=1;i<1000;i++){
-  //   dx=i*(0.4*c_w+1*slider_len)/1000
-  //   ctx_i.lineTo(50+dx+1,0.5*c_h+0.1*c_h*Math.cos(Math.PI*dx/lambda))
-  // }
-  // ctx_i.stroke();
+  ctx_i.beginPath();
+  ctx_i.strokeStyle = "blue";
+  ctx_i.moveTo(50,0.4*c_h)
+  for(i=1;i<1000;i++){
+    dx=i*(0.4*c_w+1*slider_len)/1000
+    ctx_i.lineTo(50+dx+1,0.5*c_h+0.1*c_h*Math.cos(Math.PI*dx/lambda))
+  }
+  ctx_i.stroke();
 
   //Cosine wave draw
   ctx_i.strokeStyle = "red";
