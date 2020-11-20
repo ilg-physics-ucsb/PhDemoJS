@@ -169,7 +169,7 @@ function draw() {
   volume.shift()
   //volume.push(50*Math.cos(Math.PI*((0.4*c_w+1*slider_len))/lambda))
 
-  volume.push(volume_func(Math.cos(Math.PI*((0.4*c_w+1*slider_len))/lambda)))
+  volume.push(volume_func(Math.cos(Math.PI*((0.4*c_w+1*slider_len))/(0.5*lambda))))
 
   //g.gain.value=0.01*volume[voldivs-1]
   if(!is_muted){
@@ -202,7 +202,7 @@ draw()
 
 function changelen(){
   slider_len=len_slider.value
-  document.getElementById("currentval").innerHTML= (0.5*(2+0.01*len_slider.value)).toFixed(2)
+  document.getElementById("currentval").innerHTML= (1.0*(2+0.01*len_slider.value)).toFixed(2)
 }
 
 
