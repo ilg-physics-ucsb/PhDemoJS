@@ -6,6 +6,19 @@ var ctx_i = canvas_sim.getContext('2d');
 
 var len_slider=document.getElementById("length")
 
+
+/////Audio
+var audioCtx= new AudioContext()
+var o = audioCtx.createOscillator()
+var  g = audioCtx.createGain()
+
+o.connect(g)
+g.gain.value=1
+o.type = "sine"
+g.connect(audioCtx.destination)
+
+
+
 ///////////////////Format Options/////////////////////////////////////
 var color_tube='rgba(191,191, 191, 1)';
 
@@ -35,6 +48,8 @@ var t0=new Date().valueOf()
   for(i=0;i<voldivs;i++){
     volume.push(50)
   }
+
+ 
 
 
   
@@ -152,9 +167,14 @@ function draw() {
   ctx_i.stroke();
 
   volume.shift()
-  volume.push(50*Math.cos(Math.PI*((0.4*c_w+1*slider_len))/lambda))
+  //volume.push(50*Math.cos(Math.PI*((0.4*c_w+1*slider_len))/lambda))
 
+  volume.push(volume_func(Math.cos(Math.PI*((0.4*c_w+1*slider_len))/lambda)))
 
+  //g.gain.value=0.01*volume[voldivs-1]
+  if(!is_muted){
+  g.gain.value=0.01*(volume[voldivs-1]+50)
+  }
 
 
   ctx_i.strokeStyle = "blue";
@@ -171,6 +191,7 @@ function draw() {
   ctx_i.rect(c_w-25 , 0.7*c_h-1, 20,50- volume[voldivs-1]);
   ctx_i.fill()
 
+  
 
   window.requestAnimationFrame(draw);
 }
@@ -182,4 +203,38 @@ draw()
 function changelen(){
   slider_len=len_slider.value
   document.getElementById("currentval").innerHTML= (2+0.01*len_slider.value).toFixed(2)
+}
+
+
+
+function volume_func(a){
+  half_wid=0.3
+  invval= (1+ ((1-a)/half_wid)**2)
+
+  return 100/invval-50
+}
+
+mutebutt=document.getElementById("mutebutt")
+var is_playing=0
+var is_muted=0
+function voiceMute() {
+
+  if (is_playing==0){
+    o.start()
+    is_playing=1
+  }
+
+  if(mutebutt.id == "") {
+    // 0 means mute. If you still hear something, make sure you haven't
+    // connected your source into the output in addition to using the GainNode.
+    g.gain.setValueAtTime(0, audioCtx.currentTime);
+    mutebutt.id = "activated";
+    mutebutt.innerHTML = "Unmute";
+    is_muted=1
+  } else {
+    g.gain.setValueAtTime(1, audioCtx.currentTime);
+    mutebutt.id = "";
+    mutebutt.innerHTML = "Mute";
+    is_muted=0
+  }
 }
