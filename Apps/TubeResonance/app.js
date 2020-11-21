@@ -15,6 +15,7 @@ var  g = audioCtx.createGain()
 o.connect(g)
 g.gain.value=1
 o.type = "sine"
+o.frequency.setValueAtTime(170, audioCtx.currentTime)
 g.connect(audioCtx.destination)
 
 
