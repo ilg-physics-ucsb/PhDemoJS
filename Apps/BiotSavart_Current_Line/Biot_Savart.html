@@ -1,24 +1,74 @@
-<!-- Learn about this code on MDN: https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Basic_animations -->
-<link rel="stylesheet" href="PhDemoJS_BS.css">
+<!DOCTYPE html>
+<html lang="en">
+<title>UCSB Physics</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<center>
+<head>
+    <!-- W3 CSS standards -->
+    <link rel="stylesheet" href="..\..\src\css\w3.css">
+
+    <!-- Our CSS -->
+    <link rel="stylesheet" href="..\..\src\css\Demo.css">
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Color Schemes -->
+    <link rel='stylesheet' href="https://www.w3schools.com/lib/w3-colors-flat.css">
+
+</head>
+<style>
+    #canvas_integral{
+        margin: 0px
+    }
+
+  
 
 
-<canvas id="canvas_integral" width="500" height="500" ></canvas>
-<div id= 'slide_container' width="500px">
+</style>
 
-    The magnetic field of a long straight wire depends only on the distance and direction to the point one is evaluating. 
-    The direction of the field is given by the right hand rule, and the strength of the field is inversly proporional to the distance.
-    Change the current to see how the magnetic field behaves:
-    <br>
-    <br>
-    <input type="range" min="-100" max="100" value="50"  id="current" class="sliders" oninput="velchange()" width='500'> 
-    <br>
-   <b> Current: <span id ='currentval'>0.5</span> A</b>
-    
+<body>
+    <div class="w3-main w3-center">
+        <div class="w3-row w3-container" width="100%">
+            <div class="w3-col l12 m12 s12 w3-center" id='page'>
+                <div class="w3-card section" id="summary-holder">
+                    <header class="w3-container">
+                        <h3>Line of Current</h3>
+                    </header>
+                    <div class='w3-container inner'>
+                        The magnetic field of a long straight wire depends only on the distance and direction to the
+                        point one
+                        is evaluating.
+                        The direction of the field is given by the right hand rule, and the strength of the field is
+                        inversly
+                        proporional to the distance.
+                    </div>
+                </div>
+                <div class="w3-card section" id="sim-holder">
+                    <div class='w3-container inner'>
+                        <canvas id="canvas_integral"></canvas>
+                    </div>
+                </div>
+                <div class="w3-card section" id='tool-holder'>
+                    <div class='w3-container inner'>
+
+                        Change the current to see how the magnetic field behaves for a loop with radius R = 10 cm:
+                        <br>
+                        <br>
+                        <input type="range" min="-100" max="100" value="50" id="current" class="slider"
+                            oninput="velchange()" >
+                        <br>
+                        <b> Current: <span id='currentval'>0.5</span> A</b>
+                    </div>
+                    <footer class="w3-container"><h3>Play with the Simulation</h3></footer>
+                </div>
+            </div>
+        </div>
     </div>
-</center>
 
-
-<script src="Biot-Savart.js"></script>
-
+   
+   
+     <script src="Biot-Savart.js"></script>
+</body>
