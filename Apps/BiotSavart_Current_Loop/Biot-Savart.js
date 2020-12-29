@@ -18,16 +18,16 @@ function init() {
 
 
 ////////////////////Canvas Variables//////////////////////////////////
-var canvas_i=document.getElementById('canvas_integral')
-var ctx_i = canvas_i.getContext('2d');
+var canvas=document.getElementById('canvas_integral')
+var ctx = canvas.getContext('2d');
 
 ///////////////////Format Options/////////////////////////////////////
 var color_wire='rgba(191,191, 191, 1)';
 var color_rvec='rgba(100, 0, 0, 1)';
 var color_ellipse='rgba(207, 149, 149, 1)';
 var color_electron='rgba(0, 153, 255, 0.8)';
-ctx_i.lineCap = "round";
-ctx_i.font = '24px sans-serif';
+ctx.lineCap = "round";
+ctx.font = '24px sans-serif';
 var electron_size=3;
 var wire_width=10;
 
@@ -51,8 +51,8 @@ var t=abs_time(5)
 
 //////////////////Geometry Options////////////////////////////////////
   //Get Canvas Size
-  var c_w=canvas_i.width//get canvas size
-  var c_h=canvas_i.height 
+  var c_w=canvas.width//get canvas size
+  var c_h=canvas.height 
   var c_c=[c_w*0.5,c_h*0.5]
 
 
@@ -80,6 +80,48 @@ var t=abs_time(5)
   var b_size= Math.abs(0.5*(vel/150))
 
 
+
+
+
+  function resize_all() {
+    canvas.width = canvas.parentElement.clientWidth - 40
+    hgap = 700 - document.getElementById('summary-holder').scrollHeight - document.getElementById('tool-holder').scrollHeight
+    canvas.height = hgap
+   
+    /////////////Update Geometry/////////////////////
+    //Get Canvas Size
+    c_w = canvas.width
+    c_h = canvas.height
+    c_c = [c_w * 0.5, c_h * 0.5]
+    scale_factor= Math.min(1,c_w/650) //ideal width is 650
+  
+    //ellipse
+    ellipse_size = [0.3 * c_w, 0.35 * c_h]
+  
+    //wire
+    wire_slope = 0.3 * c_h / c_w;
+    wire_y0 = c_c[1] + 0.15 * c_h
+  
+    wire_pos = [0, c_c[1], c_w, c_c[1]]
+  
+    //r_vector parameters
+    r0 = [c_c[0], c_c[1] - ellipse_size[1]]
+  
+  
+    //velocity
+    seg_len = 2 * Math.PI / 3
+  
+    //
+    electron_size = 3* scale_factor;
+    wire_width = 10* scale_factor;
+  
+    //fonts 
+    ctx.lineCap = "round";
+    ctx.font = Math.max(14,20*scale_factor)+'px sans-serif';
+  }
+  resize_all()
+  window.addEventListener('resize', resize_all);
+  
   
 //////////////////Update Functions////////////////////////////////////
 
@@ -108,7 +150,7 @@ function velchange(){
 function bs(z){
 
   var rd= Math.sqrt(((0.01)**2 +z**2))
-  return 100*(10000*vel*mu0/(2 )) * (0.01)**2/rd**3
+  return (10000*vel*mu0/(2 )) * (0.01)**2/rd**3
 }
 
 // Arrow drawing function
@@ -169,8 +211,8 @@ function labeled_point(ctx,x_p,y_p,x_l,y_l,pointsize, l_text){
 function draw() {
   
   //Clear draw area
-  ctx_i.globalCompositeOperation = 'source-over';
-  ctx_i.clearRect(0, 0, c_w, c_h); // clear canvas
+  ctx.globalCompositeOperation = 'source-over';
+  ctx.clearRect(0, 0, c_w, c_h); // clear canvas
 
   //Update Time
   t_now= 0.0001*(new Date().valueOf()-t0)
@@ -183,163 +225,150 @@ function draw() {
   angle_previous=angle_now
   b_size= Math.abs(0.5*(vel/150))
 
-  ctx_i.lineWidth= wire_width
-  ctx_i.strokeStyle = color_wire;
-  ctx_i.fillStyle = color_electron;
-  ctx_i.save()
-  ctx_i.translate(0,0.25*c_h)
-  ctx_i.scale(1,0.5)
+  ctx.lineWidth= wire_width
+  ctx.strokeStyle = color_wire;
+  ctx.fillStyle = color_electron;
+  ctx.save()
+  ctx.translate(0,0.25*c_h)
+  ctx.scale(1,0.5)
  
-  ctx_i.beginPath();
-  ctx_i.arc(c_c[0], c_c[1], ellipse_size[1], Math.PI,2*Math.PI , false);
-  ctx_i.stroke();
+  ctx.beginPath();
+  ctx.arc(c_c[0], c_c[1], ellipse_size[1], Math.PI,2*Math.PI , false);
+  ctx.stroke();
  
   
  
  
-  ctx_i.restore()
+  ctx.restore()
   
   for(i=0;i<50;i++){
-   ctx_i.beginPath();
-   ctx_i.arc(ellipse_size[1]*Math.cos(angle_now + i*2*Math.PI/(50))+c_c[0], c_c[1]+0.5*ellipse_size[1]*Math.sin(angle_now + i*2*Math.PI/(50)), electron_size, 0, 2 * Math.PI, false);
-   ctx_i.fill();
+   ctx.beginPath();
+   ctx.arc(ellipse_size[1]*Math.cos(angle_now + i*2*Math.PI/(50))+c_c[0], c_c[1]+0.5*ellipse_size[1]*Math.sin(angle_now + i*2*Math.PI/(50)), electron_size, 0, 2 * Math.PI, false);
+   ctx.fill();
  }
   
 
 
 
+///Draw R ///////////////////////////////////////////////////////////////////////////
   
+  ctx.lineWidth=3.0
+  ctx.strokeStyle = 'rgba(100,100, 100, 1)';;
+  ctx.fillStyle = 'rgba(110,110, 110, 1)';
+  ctx.setLineDash([10, 5])
 
- 
-  // canvas_arrow(ctx_i, c_c[0], c_c[1], ( vel%c_c[0])+c_c[0] ,c_c[1])
-  // canvas_arrow(ctx_i, c_c[0], c_c[1], ( (vel+0.5*c_c[0])%c_c[0])+c_c[0] , c_c[1])
 
-
- 
-
+  ctx.beginPath();
+  ctx.lineWidth=3.0
+  ctx.setLineDash([5, 5])
+  ctx.moveTo(c_c[0]-ellipse_size[1],c_c[1]);
+  ctx.lineTo(c_c[0],c_c[1]);
+  ctx.stroke();
   
-
-  ///Draw R ///////////////////////////////////////////////////////////////////////////
-  
-  ctx_i.lineWidth=3.0
-  ctx_i.strokeStyle = 'rgba(100,100, 100, 1)';;
-  ctx_i.fillStyle = 'rgba(110,110, 110, 1)';
-  ctx_i.setLineDash([10, 5])
-
-
-  ctx_i.beginPath();
-  ctx_i.lineWidth=3.0
-  ctx_i.setLineDash([5, 5])
-  ctx_i.moveTo(c_c[0]-ellipse_size[1],c_c[1]);
-  ctx_i.lineTo(c_c[0],c_c[1]);
-  ctx_i.stroke();
-  
-  ctx_i.setLineDash([])
+  ctx.setLineDash([])
   //Add Label
-  ctx_i.textAlign = 'center';
-  ctx_i.beginPath();
-  labeled_point(ctx_i,c_c[0] - 0.8*ellipse_size[0],c_c[1] + 0.1*ellipse_size[1],5,5,0, 'R = 10 cm')
-  ctx_i.stroke();
+  // ctx.textAlign = 'center';
+  // ctx.beginPath();
+  // labeled_point(ctx,c_c[0] - 0.8*ellipse_size[0],c_c[1] + 0.1*ellipse_size[1],5,5,0, 'R = 10 cm')
+  // ctx.stroke();
 
   ///Draw z ///////////////////////////////////////////////////////////////////////////
   
- ctx_i.lineWidth=3.0
- ctx_i.strokeStyle = 'rgba(100,100, 100, 1)';;
- ctx_i.fillStyle = 'rgba(110,110, 110, 1)';
- ctx_i.setLineDash([10, 5])
+ ctx.lineWidth=3.0*scale_factor
+ ctx.strokeStyle = 'rgba(100,100, 100, 1)';;
+ ctx.fillStyle = 'rgba(110,110, 110, 1)';
+ ctx.setLineDash([10, 5])
 
 
- ctx_i.beginPath();
- ctx_i.lineWidth=3.0
- ctx_i.setLineDash([5, 5])
- ctx_i.moveTo(c_c[0],c_c[1]);
- ctx_i.lineTo(c_c[0],c_c[1]-ellipse_size[1]);
- //ctx_i.lineTo(c_c[0]-ellipse_size[1],c_c[1]);
- ctx_i.stroke();
+ ctx.beginPath();
+ ctx.lineWidth=3.0*scale_factor
+ ctx.setLineDash([5, 5])
+ ctx.moveTo(c_c[0],c_c[1]);
+ ctx.lineTo(c_c[0],c_c[1]-ellipse_size[1]);
+ //ctx.lineTo(c_c[0]-ellipse_size[1],c_c[1]);
+ ctx.stroke();
  
- ctx_i.setLineDash([])
+ ctx.setLineDash([])
  //Add Label
- ctx_i.textAlign = 'center';
- ctx_i.beginPath();
- labeled_point(ctx_i,c_c[0] + 0.8*ellipse_size[0],c_c[1] - 0.2*ellipse_size[1],5,5,0, 'z = 10 cm')
- ctx_i.stroke();
+ ctx.textAlign = 'right';
+ ctx.beginPath();
+ labeled_point(ctx,c_c[0] - 10*ctx.lineWidth,c_c[1] - ellipse_size[1],5,5,0, 'z = 10 cm')
+ ctx.stroke();
 
 
   ///Arrow Ellipse/////////////////////////////////////////////////////////////////////
   
-   ctx_i.strokeStyle = 'rgba(207, 149, 149, 0.3)';
+   ctx.strokeStyle = 'rgba(207, 149, 149, 0.3)';
 
-   ctx_i.lineWidth= 1*wire_width;
+   ctx.lineWidth= 0.5*Math.max(scale_factor,0.5)*wire_width;
 
-  ctx_i.beginPath();
-  ctx_i.moveTo(c_c[0],0);
-  ctx_i.lineTo(c_c[0],c_h);
-  ctx_i.stroke();
+  ctx.beginPath();
+  ctx.moveTo(c_c[0],0);
+  ctx.lineTo(c_c[0],c_h);
+  ctx.stroke();
    
-  ctx_i.strokeStyle = color_ellipse;
-  ctx_i.fillStyle = color_ellipse;
-  for(i=0;i<6;i++){
-    z=(c_h*0.3*(3-i)+x_now).mod(1.8*c_h)-0.3*c_h
-    z_h=(Math.abs(z-c_c[0])/ellipse_size[1])*0.01
-    ctx_i.beginPath();
-    ctx_i.moveTo(c_c[0],z-0.01*bs(z_h))
-    ctx_i.lineTo(c_c[0],z+0.01*bs(z_h))
+  ctx.strokeStyle = color_ellipse;
+  ctx.fillStyle = color_ellipse;
+  for(i=0;i<8;i++){
+    z=(c_h*0.25*(4-i)+x_now).mod(c_h) 
+    z_h= 2* 0.01*Math.abs((z-c_h/2)/c_h)
+    ctx.beginPath();
+    ctx.moveTo(c_c[0],z- (vel/100)*0.08*c_h*bs(z_h)/bs(0))
+    ctx.lineTo(c_c[0],z+ (vel/100)*0.08*c_h*bs(z_h)/bs(0))
 
-    canvas_arrowhead_rot(ctx_i,c_c[0] ,z-0.01*bs(z_h), -Math.sign(bs(z_h))*Math.sqrt(Math.abs(0.1*bs(z_h))), 0.3*Math.PI)
-    ctx_i.stroke();
+    canvas_arrowhead_rot(ctx,c_c[0] ,z-(vel/100)* 0.08*c_h*bs(z_h)/bs(0), -Math.sign(vel)*8*Math.max(scale_factor,0.5), 0.3*Math.PI)
+    ctx.stroke();
   }
 
-  ctx_i.fillStyle = color_ellipse;
+  ctx.fillStyle = color_ellipse;
 
   //Add Label
-  ctx_i.textAlign = 'left';
-  ctx_i.beginPath();
-  labeled_point(ctx_i,c_c[0] + 0.3*ellipse_size[0],c_c[1]-ellipse_size[1]+4,5,5,0, 'B = ' +(bs(0.01)/(100)).toFixed(1)+' \u03BCT')
-  ctx_i.stroke();
-  ctx_i.beginPath
-  ctx_i.arc(c_c[0],c_c[1]-ellipse_size[1],10,0, 2*Math.PI)
-  ctx_i.fill()
+  ctx.textAlign = 'left';
+  ctx.beginPath();
+  labeled_point(ctx,c_c[0] + 5*ctx.lineWidth,c_c[1]-ellipse_size[1],5,5,0, 'B = ' +(bs(0.01)).toFixed(1)+' \u03BCT')
+  ctx.stroke();
+  ctx.beginPath
+  ctx.arc(c_c[0],c_c[1]-ellipse_size[1],10,0, 2*Math.PI)
+  ctx.fill()
 
 
 
  ///Top layer wire/////////////////////////////////////////////////////////////////////
 
 
- ctx_i.lineWidth= wire_width
- ctx_i.strokeStyle = color_wire;
- ctx_i.fillStyle = color_electron;
- ctx_i.save()
+ ctx.lineWidth= wire_width*scale_factor
+ ctx.strokeStyle = color_wire;
+ ctx.fillStyle = color_electron;
+ ctx.save()
 
- ctx_i.translate(0,0.25*c_h)
- ctx_i.scale(1,0.5)
+ ctx.translate(0,0.25*c_h)
+ ctx.scale(1,0.5)
 
- ctx_i.beginPath();
- ctx_i.arc(c_c[0], c_c[1], ellipse_size[1], 0, Math.PI, false);
- ctx_i.stroke();
+ ctx.beginPath();
+ ctx.arc(c_c[0], c_c[1], ellipse_size[1], 0, Math.PI, false);
+ ctx.stroke();
 
- ctx_i.restore()
+ ctx.restore()
 
 
  for(i=0;i<50;i++){
-   ctx_i.beginPath();
-   ctx_i.arc(ellipse_size[1]*Math.cos(angle_now + i*2*Math.PI/(50))+c_c[0], c_c[1]+0.5*ellipse_size[1]*Math.sin(angle_now + i*2*Math.PI/(50)), electron_size, 0, 2 * Math.PI, false);
-   ctx_i.fill();
+   ctx.beginPath();
+   ctx.arc(ellipse_size[1]*Math.cos(angle_now + i*2*Math.PI/(50))+c_c[0], c_c[1]+0.5*ellipse_size[1]*Math.sin(angle_now + i*2*Math.PI/(50)), electron_size, 0, 2 * Math.PI, false);
+   ctx.fill();
  }
 
  //Add Label
- ctx_i.textAlign = 'center';
- ctx_i.fillStyle = color_wire;
- ctx_i.beginPath();
-
- labeled_point(ctx_i, c_c[0]+0.5*ellipse_size[1] ,c_c[1] +0.75*ellipse_size[1],5,5,0, 'Current:')
- labeled_point(ctx_i, c_c[0] +0.5*ellipse_size[1],c_c[1] +0.85*ellipse_size[1],5,5,0, 'I = '+(vel/100).toFixed(2)+' A')
- ctx_i.moveTo(c_c[0]+0.5*ellipse_size[1]-0.5*vel, c_c[1] +0.6*ellipse_size[1])
- ctx_i.lineTo(c_c[0]+0.5*ellipse_size[1]+0.5*vel, c_c[1] +0.6*ellipse_size[1])
- canvas_arrowhead(ctx_i,c_c[0]+0.5*ellipse_size[1]+0.5*vel, c_c[1] +0.6*ellipse_size[1], 0.15*(vel))
- //canvas_arrow(ctx_i, c_c[0]-0.5*vel, 1.1*c_c[1], c_c[0]+0.5*vel, 1.1*c_c[1], 10)
- //ctx_i.lineTo(c_c[0]+0.5*vel, 1.1*c_c[1])
+ ctx.textAlign = 'center';
+ ctx.fillStyle = 'rgba(100,100, 100, 1)';
+ ctx.beginPath();
+ labeled_point(ctx, c_c[0] +0.5*ellipse_size[1],c_c[1] +0.75*ellipse_size[1] +30*scale_factor,5,5,0, 'I = '+(vel/100).toFixed(2)+' A')
+ ctx.moveTo(c_c[0]+0.5*ellipse_size[1]-0.5*vel, c_c[1] +0.6*ellipse_size[1])
+ ctx.lineTo(c_c[0]+0.5*ellipse_size[1]+0.5*vel, c_c[1] +0.6*ellipse_size[1])
+ canvas_arrowhead(ctx,c_c[0]+0.5*ellipse_size[1]+0.5*vel, c_c[1] +0.6*ellipse_size[1], 0.15*(vel))
+ //canvas_arrow(ctx, c_c[0]-0.5*vel, 1.1*c_c[1], c_c[0]+0.5*vel, 1.1*c_c[1], 10)
+ //ctx.lineTo(c_c[0]+0.5*vel, 1.1*c_c[1])
   
- ctx_i.stroke();
+ ctx.stroke();
 
 
 
