@@ -1,6 +1,5 @@
 @media (max-width:601px){
-    body {font-size: small!important;}
-   
+    body {font-size: small!important;}  
   }
   @media (min-width:601px){
     body{font-size: medium;}
@@ -12,10 +11,17 @@
 
 #page {
     min-width: 200px;
+    
+}
+
+.w3-main > .w3-row{
+  padding:0px;
+    margin:0px;
+
 }
 
 .section {
-    margin: 15px 10px;
+    margin: 15px 0px;
     border-radius: 5px;
     background-color: #cccccc;
 }
@@ -30,6 +36,7 @@
 
 .section header h3{
     font-weight: bolder;
+    font-size: larger;
 }
 
 .section footer{

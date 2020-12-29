@@ -292,7 +292,7 @@ function draw() {
  //Add Label
  ctx.textAlign = 'right';
  ctx.beginPath();
- labeled_point(ctx,c_c[0] - 10*ctx.lineWidth,c_c[1] - ellipse_size[1],5,5,0, 'z = 10 cm')
+ labeled_point(ctx,c_c[0] - 10*ctx.lineWidth -10,c_c[1] - ellipse_size[1],5,5,0, 'z = 10 cm')
  ctx.stroke();
 
 
@@ -300,7 +300,7 @@ function draw() {
   
    ctx.strokeStyle = 'rgba(207, 149, 149, 0.3)';
 
-   ctx.lineWidth= 0.5*Math.max(scale_factor,0.5)*wire_width;
+   ctx.lineWidth= 0.6*Math.max(scale_factor,0.8)*wire_width;
 
   ctx.beginPath();
   ctx.moveTo(c_c[0],0);
@@ -316,7 +316,7 @@ function draw() {
     ctx.moveTo(c_c[0],z- (vel/100)*0.08*c_h*bs(z_h)/bs(0))
     ctx.lineTo(c_c[0],z+ (vel/100)*0.08*c_h*bs(z_h)/bs(0))
 
-    canvas_arrowhead_rot(ctx,c_c[0] ,z-(vel/100)* 0.08*c_h*bs(z_h)/bs(0), -Math.sign(vel)*8*Math.max(scale_factor,0.5), 0.3*Math.PI)
+    canvas_arrowhead_rot(ctx,c_c[0] ,z-(vel/100)* 0.08*c_h*bs(z_h)/bs(0), -(vel/100)*10*Math.max(scale_factor,0.5), 0.3*Math.PI)
     ctx.stroke();
   }
 
@@ -325,10 +325,10 @@ function draw() {
   //Add Label
   ctx.textAlign = 'left';
   ctx.beginPath();
-  labeled_point(ctx,c_c[0] + 5*ctx.lineWidth,c_c[1]-ellipse_size[1],5,5,0, 'B = ' +(bs(0.01)).toFixed(1)+' \u03BCT')
+  labeled_point(ctx,c_c[0] + 5*ctx.lineWidth +10,c_c[1]-ellipse_size[1],5,5,0, 'B = ' +(bs(0.01)).toFixed(1)+' \u03BCT')
   ctx.stroke();
   ctx.beginPath
-  ctx.arc(c_c[0],c_c[1]-ellipse_size[1],10,0, 2*Math.PI)
+  ctx.arc(c_c[0],c_c[1]-ellipse_size[1],10*scale_factor,0, 2*Math.PI)
   ctx.fill()
 
 
