@@ -1,49 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>UCSB Physics</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<head><script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-  <style>
-    #side_view{
-      width:90%;
-      height:150px;
-      margin:25px;
-      align-items: center;
-    }
-  </style>
-<link rel="stylesheet" href="../../src/css/PhDemoJS.css"> 
+<head>
+    <!-- W3 CSS standards -->
+    <link rel="stylesheet" href="..\..\src\css\w3.css">
+
+    <!-- Our CSS -->
+    <link rel="stylesheet" href="..\..\src\css\Demo.css">
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Color Schemes -->
+    <link rel='stylesheet' href="https://www.w3schools.com/lib/w3-colors-flat.css">
+
+    
+
 </head>
 
-   
-    <div class="sim">
-      <div id="interactions">
-        <div class="blurb">  
-          The Lorentz Force causes moving charges to accelerate in the presence of magnetic fields. In this simulation, you can shoot a charged particle across a 
-          plane generating a uniform magnetic field along the z-axis. Can you figure out the sign of the particle's charge?
-        </div>
-        <br>
-      <div class="blurb">  
-        <!-- <b>Starting Height:</b> <span id="slo1" style="font-weight:bold" > 0 </span> m
-        <input type="range" min="0" max="100" value="50" class="sliders" id="sl1">
-        <br> -->
-        <b>Vx:</b> <span id="slo2" style="font-weight:bold" > 10 </span> m/s
-        <input type="range" min="0" max="100" value="50" class="sliders" id="sl2">
-        <br>
-        <b>Field Strength:</b> <span id="slo3"  style="font-weight:bold" > 0 </span> T
-        <input type="range" min="-100" max="100" value="20" class="sliders" id="sl3">
-        <button onclick="javascript:startUpdate();" class="object" >Shoot!</button>
-      </div>
-      
-      <center>
-        <br>
-        <font color='white'><b>Side View: </b></font>
-      <canvas id='side_view' height=150px></canvas>
-    </center>
-    </div>
-    <div id="graph"></div>
-  
-  
-  </div>
-  <script src="../../PhDemo_pallet.js"></script>
+<body>
+    <div class="w3-main w3-center">
+        <div class="w3-row" width="100%">
+            <div class="w3-col l12 m12 s12 w3-center" id='page'>
+                <div class="w3-card section" id="summary-holder">
+                    <header class="w3-container">
+                        <h3>Lorentz Force on a Particle</h3>
+                    </header>
+                    <div class='w3-container inner'>
+                      The Lorentz Force causes moving charges to accelerate in the presence of magnetic fields. In this simulation, you can shoot a charged particle across a 
+                      plane generating a uniform magnetic field along the z-axis. Can you figure out the sign of the particle's charge?
+                    </div>
+                </div>
+                <div class="w3-card section" id="sim-holder">
+                    <div class='w3-container inner'>
+                      <center>Side View</center>
+                      <canvas id='side-view'></canvas>
+                      <center>Top View</center>
+                    </div>
+                </div>
+                <div class="w3-card section" id='tool-holder'>
+                    <div class='w3-container inner'>
 
-  <script src="PhDemoJS_LorentzForce.js"></script>
-  
-  <script src="PhDemoJS_LorentzForce_Displays.js"></script>
-  
+                      <b>Vx:</b> <span id="slo2" style="font-weight:bold" > 10 </span> m/s</html><br>
+                      <input type="range" min="0" max="100" value="50" class="slider" id="sl2">
+                      <br>
+                      <b>Field Strength:</b> <span id="slo3"  style="font-weight:bold" > 0 </span> T <br>
+                      <input type="range" min="-100" max="100" value="20" class="slider" id="sl3">
+                      <br>
+                      <button onclick="javascript:startUpdate();" class="object" >Shoot!</button>
+                    </div>
+                    <footer class="w3-container"><h3></h3></footer>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+    
+     <script src="LorentzForce2.js"></script>
+     
+</body>
+
+
+
