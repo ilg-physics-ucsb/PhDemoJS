@@ -9,20 +9,25 @@
    
   }
 
+  body{
+    text-align: center;
+  }
+
 #page {
     min-width: 200px;
-    max-width: 750px;
-    
+    max-width: 800px;
+    margin:auto!important
+       
 }
 
 .w3-main > .w3-row{
   padding:0px;
-    margin:0px;
+  margin:0px auto!important;
 
 }
 
 .section {
-    margin: 15px 0px;
+    margin: 15px auto;
     border-radius: 5px;
     background-color: #cccccc;
 }
