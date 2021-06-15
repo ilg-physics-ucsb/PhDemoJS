@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>UCSB Physics</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<head>
+    <!-- W3 CSS standards -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <!-- Our CSS -->
+    <link rel="stylesheet" href="Styles.css">
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Color Schemes -->
+    <link rel='stylesheet' href="https://www.w3schools.com/lib/w3-colors-flat.css">
+
+</head>
+
+<style>
+    #canvas_integral{
+        margin: 0px
+    }
+
+  
+</style>
+
+<body>
+    <div class="w3-main w3-center">
+        <div class="w3-row w3-container" width="100%">
+            <div class=" w3-center" id='page'>
+                <div class="w3-card section" id="summary-holder">
+                    <header class="w3-container">
+                        <h3>Free Fall</h3>
+                    </header>
+                    <div class='w3-container inner'>
+                        The simulation here demonstrates the free fall motion of a ball. The left hand side shows what the scene looks like to an onlooker: a ball falling straight towards the ground at increasing speed. The right hand side shows you what the respective "position v.s. time" curve would look like if you were to record this data. 
+                    </div>
+                </div>
+                <div class="w3-card section" id="sim-holder">
+                    <div class='w3-container inner'>
+                        <canvas id="main-canvas"></canvas>
+                    </div>
+                </div>
+                <div class="w3-card section" id='tool-holder'>
+                    <div class='w3-container inner'>
+
+                       Observe how increasing and decreasing air resistance affects the shape of the graph
+                        <br>
+                        <button id='start' class='object' style='width:80%;' onclick="run()">Drop</button><button id='start' class='object' style='width:80%;' onclick="reset()">Reset</button>
+                        <br>
+                        <b> Starting Height: <span id='current-height'>50</span> m</b>
+                        <br>
+                        <input type="range" min="1" max="100" value="50" id="height" class="slider"
+                            oninput="param_change()" >
+                        <br>
+                        <b> Initial Velocity: <span id='current-vel'>0.0</span> m/s</b>
+                        <br>
+                        <input type="range" min="-20" max="20" value="0" id="velocity" class="slider"
+                            oninput="param_change()" >
+                        <br>
+                        <b> Influence of Air Resistance: <span id='current-air'>0.0</span> %</b>
+                        <br>
+                        <input type="range" min="0" max="100" value="0" id="resistance" class="slider"
+                            oninput="param_change()" >
+                        <br>
+                        
+                    </div>
+                    <footer class="w3-container"><h3></h3></footer>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+   
+     <script src="Sim.js"></script>
+</body>
