@@ -10,58 +10,69 @@ var ctx = canvas.getContext('2d');
 var c_w = canvas.width//get canvas size
 var c_h = canvas.height
 var c_c = [c_w * 0.5, c_h * 0.5]
-var scale_factor= Math.min(1,c_w/650)
+var scale_factor = Math.min(1, c_w / 650)
 
 //Ideal Height in px
-idealheight= 900;
+idealheight = 900;
 
-//font
-
-
+//Function to deal with Window Resizing
 function resize_all() {
   canvas.width = canvas.parentElement.clientWidth - 40
   hgap = idealheight - document.getElementById('summary-holder').scrollHeight - document.getElementById('tool-holder').scrollHeight
   canvas.height = hgap
- 
- 
 }
+
 resize_all()
-window.addEventListener('resize', resize_all);
+
+//Call function automatically on window events
+function resize_on_event() {
+  resize_all()
+  init()
+}
+
+//Attach
+window.addEventListener('resize', resize_on_event);
 
 
 
 function init() {
   reset()
-  reset()
   draw()
- 
+  window.requestAnimationFrame(draw)
+
 }
 
 
 ////////////////////Canvas Variables//////////////////////////////////
- /////////////Update Geometry/////////////////////
-  //Get Canvas Size
-  c_w = canvas.width
-  c_h = canvas.height
-  c_c = [c_w * 0.5, c_h * 0.5]
-  scale_factor= Math.min(1,c_w/650) //ideal width is 650
-  /////////////////Initial Conditions/////////////////////////////////
-  var y0= 50.0
-  var v0= 0.0
-  var a0 = 0.0
+/////////////Update Geometry/////////////////////
+//Get Canvas Size
+c_w = canvas.width
+c_h = canvas.height
+c_c = [c_w * 0.5, c_h * 0.5]
+scale_factor = Math.min(1, c_w / 650) //ideal width is 650
 
-  var y=y0
-  var a=a0
-  var v=v0
 
-  const g=9.81
 
-  var plot = [[0,y0]]
+/////////////////Simulation Initial Conditions/////////////////////////////////
+var y0 = 50.0
+var v0 = 0.0
+var a0 = 0.0
+
+var y = y0
+var a = a0
+var v = v0
+
+const g = 9.81
+
+var plot = [[0, y0]]
+
+
+
 ///////////////////Format Options/////////////////////////////////////
-  laddercolor= 'rgb(101, 67, 28)'
-  ballcolor= 'rgb(222, 89, 119)'
-  stickfig=new Image()
-  stickfig.src='https://i.imgur.com/72SFysd.png'
+laddercolor = 'rgb(101, 67, 28)'
+ballcolor = 'rgb(222, 89, 119)'
+stickfig = new Image()
+stickfig.src = 'https://i.imgur.com/72SFysd.png'
 
 
 
@@ -72,9 +83,9 @@ function init() {
 //Real time
 var time = new Date();
 var t0 = new Date().valueOf()
-var t_now=t0
-var dt=0.00001
-stop=true
+var t_now = t0
+var dt = 0.01
+stop = true
 
 
 
@@ -82,59 +93,62 @@ stop=true
 height_slider = document.getElementById('height')
 velocity_slider = document.getElementById('velocity')
 air_slider = document.getElementById('resistance')
-height_out= document.getElementById('current-height')
-velocity_out= document.getElementById('current-vel')
-resistance_out= document.getElementById('current-air')
+height_out = document.getElementById('current-height')
+velocity_out = document.getElementById('current-vel')
+resistance_out = document.getElementById('current-air')
 
 //////////////////Update Functions////////////////////////////////////
 
 function param_change() {
-  stop=true
-  
-  height_out.innerHTML= height_slider.value
-  y0=height_slider.value*1.0
-  y=y0
-  velocity_out.innerHTML= velocity_slider.value
-  v0=velocity_slider.value*1.0
-  v=v0
-  resistance_out.innerHTML= air_slider.value
-  a0 = air_slider.value*1.0
-  t0 = new Date().valueOf()
+  stop = true
+
+  height_out.innerHTML = height_slider.value
+  y0 = height_slider.value * 1.0
+  y = y0
+  velocity_out.innerHTML = velocity_slider.value
+  v0 = velocity_slider.value * 1.0
+  v = v0
+  resistance_out.innerHTML = air_slider.value
+  a0 = air_slider.value * 1.0
   reset()
 }
 
-function height_now(t){
+function height_now(t) {
 
-  if (a0>0){
-    vt=a0
-    v = (g/vt) -((g/vt)+v0)*Math.exp(-vt*t)
-    y=y- v*0.3
-    console.log(v)
-    console.log(v0)
-    console.log(y)
-    console.log(dt)
-    return y
-  }else{
-    return y0-0.5*g*t*t +v0*t
+  v_g=v0 -g*t
+  a=100*a0
+  vt = g/(2*a)
+  if (a0 > 0) {
+    vt = 0.01 * a0
+    v = -(0.7*g )*(1-Math.exp(-vt *t)) + v_g*Math.exp(-vt *t)
+    ys = y + v *dt
+    //ys= y0 + (1/a)*(-vt*t +v0*t +g*t)*Math.exp(-a*t) - (vt +g/a)*t
+    //ys= y0 + ((v0 +0.5*g*t)*t)/(1-0.5*t*g/vt)
+    return ys
+  } else {
+    y = y + v_g*dt
+    //return y
+    return y0 - 0.5 * g * t * t + v0 * t
   }
 
 }
 
-function reset(){
-  stop=true
-  y=y0
-  v=v0
-  a=a0
-  dt=0.00001
+function reset() {
+  stop = true
+  //Reset all variables to slider values
+  y = y0
+  v = v0
+  a = a0
+  dt = 0.01
   t0 = new Date().valueOf()
-  t_now=t0
-  plot = [[0,y0]]
-  draw()
+  t_now = t0
+  plot = [[0, y0]]
+  window.requestAnimationFrame(draw)
 }
 
-function run(){
+function run() {
   reset()
-  stop=false
+  stop = false
   draw()
 
 }
@@ -142,80 +156,163 @@ function run(){
 /////////////////////////////////////////////////////////////
 
 
-
+graph_bottom=10
 
 
 ///////////////////////////Draw Loop////////////////////////////////////////////////////
 
 function draw() {
 
- 
-  
+
+
   //Clear draw area
   ctx.globalCompositeOperation = 'source-over';
   ctx.clearRect(0, 0, c_w, c_h); // clear canvas
-  
+
   //Update Time
-  dt=(0.01*new Date().valueOf() - t0 - t_now)
-  t_now =0.01*(new Date().valueOf() - t0)
-  console.log(t_now)
-  y=height_now(t_now)
-  plot.push([t_now,y])
+ 
+  t_now = 0.01 * (new Date().valueOf() - t0)
+  y =Math.max( height_now(t_now),0)
+  plot.push([t_now, y])
+  dt = (plot[plot.length-1][0]-plot[plot.length-2][0])
+  console.log(plot[plot.length-1][0],plot[plot.length-2][0])
+  console.log(dt)
 
   ctx.save()
 
-  ///Draw a Ladder
-  ctx.beginPath();
-  ctx.moveTo(0.2*c_w, 0.0*c_h)
-  ctx.lineTo(0.2*c_w, c_h)
-  ctx.moveTo(0.2*c_w+20, 0.0*c_h)
-  ctx.lineTo(0.2*c_w+20, c_h)
-  for(i=1;i<(c_h/15);i++){
-    ctx.moveTo(0.2*c_w, c_h -15*i)
-    ctx.lineTo(0.2*c_w+20, c_h -15*i)
-  }
-  ctx.strokeStyle=laddercolor;
-  ctx.stroke()
-
   //Draw Grass
   ctx.beginPath();
-  ctx.moveTo(0.0*c_w, c_h)
+  ctx.moveTo(0.0 * c_w, c_h)
   ctx.lineTo(c_w, c_h)
-  ctx.strokeStyle= 'green'
-  ctx.lineWidth=5;
+  ctx.strokeStyle = 'green'
+  ctx.lineWidth = 5;
   ctx.stroke()
 
-  ///Draw a person
-  ctx.drawImage(stickfig, 0.2*c_w-10, (1-y0/100)*c_h-20, 40, 40)
+
+  ///Draw graph frame
+
+  GW = (c_w - 40) - (0.2 * c_w + 40)
+  GH = (c_h - graph_bottom) - (10.0)
+  ctx.strokeStyle = 'black'
+  ctx.lineWidth = 2
+  ctx.beginPath();
+  canvas_arrow(ctx, 0.2 * c_w + 40, c_h - graph_bottom, 0.2 * c_w + 40, 20, 10.0)
+  ctx.stroke()
+  ctx.beginPath();
+  canvas_arrow(ctx, 0.2 * c_w + 40, c_h - graph_bottom, c_w - 40, c_h - graph_bottom, 10.0)
+  ctx.stroke()
+
+
+  ctx.strokeStyle = 'gray'
+  ctx.lineWidth = 1
+  ctx.beginPath();
+  for (i = 1; i < 12; i++) {
+    ctx.moveTo(0.2 * c_w + 40 + i * GW / 12, c_h - 5)
+    ctx.lineTo(0.2 * c_w + 40 + i * GW / 12, 30)
+  }
+  ctx.stroke()
+
+
+  ctx.strokeStyle = 'gray'
+  ctx.lineWidth = 1
+  ctx.beginPath();
+  for (i = 1; i < 11; i++) {
+    ctx.moveTo(0.2 * c_w + 40, 10 + i * GH / 10)
+    ctx.lineTo(c_w - 60, 10 + i * GH / 10)
+  }
+  ctx.stroke()
+
+  //Label Graph
+  ctx.fillStyle= "black"
+  ctx.font = "30px Arial";
+  ctx.fillText("y", 0.2*c_w+32, 10)
+
+  ///Draw a Ladder
+  ctx.beginPath();
+  ctx.moveTo(0.2 * c_w, 0.0 * c_h)
+  ctx.lineTo(0.2 * c_w, c_h)
+  ctx.moveTo(0.2 * c_w + 20, 0.0 * c_h)
+  ctx.lineTo(0.2 * c_w + 20, c_h)
+  for (i = 1; i < (c_h / 15); i++) {
+    ctx.moveTo(0.2 * c_w, c_h - 15 * i)
+    ctx.lineTo(0.2 * c_w + 20, c_h - 15 * i)
+  }
+  ctx.strokeStyle = laddercolor;
+  ctx.stroke()
+
+  ctx.rect(0.2*c_w+40,c_h-8,GW-20,5)
+  ctx.fillStyle="white"
+  ctx.fill()
+
+
+
+  tscale=60
+  
+
+
+  /////////////////Draw trackers
+  //Horizonal
+  ctx.beginPath();
+  ctx.moveTo(0.2 * c_w + 35, (1 - y / 100) * c_h - 10)
+  ctx.lineTo(0.2 * c_w + 40 + plot[plot.length - 1][0] * tscale, (1 - plot[plot.length - 1][1] / 100) * c_h - 10)
+  ctx.strokeStyle = 'red'
+  ctx.lineWidth = 2
+  ctx.stroke()
+
+  //Vertical
+  ctx.beginPath();
+  ctx.moveTo(0.2 * c_w + 40 + plot[plot.length - 1][0] * tscale, (1 - plot[plot.length - 1][1] / 100) * c_h - 10)
+  ctx.lineTo(0.2 * c_w + 40 + plot[plot.length - 1][0] * tscale, c_h - 10)
+  ctx.strokeStyle = 'blue'
+  ctx.lineWidth = 2
+  ctx.stroke()
+
+
+
+  //////////////Graph Trajectory
+  ctx.moveTo(0.2 * c_w, (1 - y / 100) * c_h)
+  ctx.beginPath();
+  for (i = 0; i < (plot.length-1)/2; i++) {
+    avgpoint = [0.5*((0.2 * c_w + 40 + plot[2*i][0] * tscale)+ (0.2 * c_w + 40 + plot[2*i+1][0] * tscale)), 0.5*(((1 - plot[2*i][1] / 100) * c_h - 5)+((1 - plot[2*i+1][1] / 100) * c_h - 5))]
+    ctx.lineTo(avgpoint[0],avgpoint[1])
+
+  }
+  ctx.strokeStyle = 'gray'
+  ctx.lineWidth = 2
+  //ctx.setLineDash([10, 10])
+  ctx.stroke()
+  ctx.restore()
+
+  //Tracker Points
+
+  ctx.beginPath();
+  ctx.arc(0.2 * c_w + 40 + plot[plot.length - 1][0] * tscale, (1 - y / 100) * (c_h-graph_bottom) , 5, 0, 2 * Math.PI)
+  ctx.fillStyle = "pink";
+  ctx.fill()
+
+
 
   ///Draw a Ball
   ctx.beginPath();
-  ctx.arc( 0.2*c_w+35, (1- y/100)*c_h-10, 10, 0, 2*Math.PI)
-  ctx.fillStyle=ballcolor;
+  ctx.arc(0.2 * c_w + 40, (1 - y / 100) * (c_h-graph_bottom) , 10, 0, 2 * Math.PI)
+  ctx.fillStyle = ballcolor;
   ctx.fill()
 
-  ///Draw a Graph
-  
 
-  console.log(plot)
-  ctx.moveTo(0.2*c_w, (1- y/100)*c_h)
-  ctx.beginPath();
-  for (i=0;i< plot.length;i++){
-    ctx.lineTo(0.2*c_w +40+ plot[i][0]*15, (1- plot[i][1]/100)*c_h-5)
-    
-  }
-  ctx.strokeStyle='gray'
-  ctx.lineWidth=2
-  ctx.setLineDash([10,10])
-  ctx.stroke()
 
   ctx.restore()
-  if(5000>y && y>-0.01 &&!stop){
-  
-  window.requestAnimationFrame(draw);
+
+  ///Draw a person
+  ctx.drawImage(stickfig, 0.2 * c_w - 10, (1 - 1.0 * y0 / 100) * c_h - 20, 40, 40)
+
+
+
+
+  if (5000 > y && y > 1.0 && !stop) {
+
+    window.requestAnimationFrame(draw);
   }
 }
-
 
 
 
@@ -250,7 +347,7 @@ function draw() {
 // Arrow drawing function
 function canvas_arrow(context, fromx, fromy, tox, toy, headl) {
   //var headlen = 10; // length of head in pixels
-  var headlen = 5//Math.floor(headl)
+  var headlen = Math.floor(headl)
   var dx = tox - fromx;
   var dy = toy - fromy;
   var angle = Math.atan2(dy, dx);
@@ -299,5 +396,6 @@ function labeled_point(ctx, x_p, y_p, x_l, y_l, pointsize, l_text) {
   ctx.fillText(l_text, x_p + x_l, y_p + y_l)
 }
 
-
-init();
+stickfig.onload = function () {
+  init();
+}
