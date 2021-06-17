@@ -169,6 +169,7 @@ function run() {
 
 
 graph_bottom=10
+graph_top=30
 
 
 ///////////////////////////Draw Loop////////////////////////////////////////////////////
@@ -202,17 +203,17 @@ function draw() {
   ///Draw graph frame
 
   GW = (c_w - 40) - (0.2 * c_w + 40)
-  GH = (c_h - graph_bottom) - (10.0)
+  GH = (c_h - graph_bottom) - (graph_top)
   ctx.strokeStyle = 'black'
   ctx.lineWidth = 2
   ctx.beginPath();
-  canvas_arrow(ctx, 0.2 * c_w + 40, c_h - graph_bottom, 0.2 * c_w + 40, 20, 10.0)
+  canvas_arrow(ctx, 0.2 * c_w + 40, c_h - graph_bottom, 0.2 * c_w + 40, graph_top, 10.0)
   ctx.stroke()
   ctx.beginPath();
   canvas_arrow(ctx, 0.2 * c_w + 40, c_h - graph_bottom, c_w - 40, c_h - graph_bottom, 10.0)
   ctx.stroke()
 
-
+ ///Draw lines
   ctx.strokeStyle = 'gray'
   ctx.lineWidth = 1
   ctx.beginPath();
@@ -228,14 +229,15 @@ function draw() {
   ctx.beginPath();
   for (i = 1; i < 11; i++) {
     ctx.moveTo(0.2 * c_w + 40, 10 + i * GH / 10)
-    ctx.lineTo(c_w - 60, 10 + i * GH / 10)
+    ctx.lineTo(c_w - 40, 10 + i * GH / 10)
   }
   ctx.stroke()
 
   //Label Graph
   ctx.fillStyle= "black"
-  ctx.font = "30px Arial";
-  ctx.fillText("y", 0.2*c_w+32, 10)
+  ctx.font = "20px Arial";
+  ctx.fillText("y", 0.2*c_w+36, 15)
+  ctx.fillText("t", c_w-30, c_h-graph_bottom)
 
   ///Draw a Ladder
   ctx.beginPath();
