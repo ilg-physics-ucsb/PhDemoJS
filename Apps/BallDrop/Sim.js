@@ -49,8 +49,6 @@ window.addEventListener('resize', resize_on_event);
 
 function init() {
   reset()
-  draw()
-  window.requestAnimationFrame(draw)
 
 }
 
@@ -153,7 +151,7 @@ function reset() {
   a = a0
   dt = 0.01
   t0 = new Date().valueOf()
-  t_now = t0
+  t_now = 0
   plot = [[0, y0]]
   window.requestAnimationFrame(draw)
 }
@@ -161,6 +159,8 @@ function reset() {
 function run() {
   reset()
   stop = false
+  t0 = new Date().valueOf()
+  t_now = 0
   draw()
 
 }
@@ -182,13 +182,7 @@ function draw() {
   ctx.globalCompositeOperation = 'source-over';
   ctx.clearRect(0, 0, c_w, c_h); // clear canvas
 
-  //Update Time
  
-  t_now = 0.01 * (new Date().valueOf() - t0)
-  y =Math.max( height_now(t_now),0)
-  plot.push([t_now, y])
-  dt = (plot[plot.length-1][0]-plot[plot.length-2][0])
-
   ctx.save()
 
   //Draw Grass
@@ -310,18 +304,22 @@ function draw() {
   ctx.fillStyle = ballcolor;
   ctx.fill()
 
-
-
+  console.log(t_now)
   ctx.restore()
 
   ///Draw a person
   ctx.drawImage(stickfig, 0.2 * c_w - 10, (1 - 1.0 * y0 / 100) * c_h - 20, 40, 40)
 
 
-
+  
 
   if (5000 > y && y > 1.0 && !stop) {
-
+    //Update Time
+ 
+    t_now = 0.01 * (new Date().valueOf() - t0)
+    y =Math.max( height_now(t_now),0)
+    plot.push([t_now, y])
+    dt = (plot[plot.length-1][0]-plot[plot.length-2][0])
     window.requestAnimationFrame(draw);
   }
 }
