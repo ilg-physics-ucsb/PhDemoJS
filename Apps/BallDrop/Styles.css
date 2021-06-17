@@ -1,4 +1,9 @@
 
+body{
+  height:1000px;
+  overflow: hidden;
+}
+
 /* The main wrapper */
 .sim {
   margin: auto;

@@ -18,14 +18,26 @@ idealheight = 900;
 //Function to deal with Window Resizing
 function resize_all() {
   canvas.width = canvas.parentElement.clientWidth - 40
+  console.log('Client width: ', canvas.parentElement.clientWidth)
+  console.log('canvas width: ', canvas.width)
   hgap = idealheight - document.getElementById('summary-holder').scrollHeight - document.getElementById('tool-holder').scrollHeight
   canvas.height = hgap
+
+  console.log('Client width: ', canvas.parentElement.clientWidth)
+  console.log('canvas height: ',hgap)
+
+
+ c_w = canvas.width//get canvas size
+ c_h = canvas.height
+ c_c = [c_w * 0.5, c_h * 0.5]
+ scale_factor = Math.min(1, c_w / 650)
 }
 
 resize_all()
 
 //Call function automatically on window events
 function resize_on_event() {
+  console.log('resized')
   resize_all()
   init()
 }
@@ -175,8 +187,6 @@ function draw() {
   y =Math.max( height_now(t_now),0)
   plot.push([t_now, y])
   dt = (plot[plot.length-1][0]-plot[plot.length-2][0])
-  console.log(plot[plot.length-1][0],plot[plot.length-2][0])
-  console.log(dt)
 
   ctx.save()
 
