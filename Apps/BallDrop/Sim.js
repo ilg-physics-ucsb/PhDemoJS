@@ -278,11 +278,12 @@ function draw() {
   //////////////Graph Trajectory
   ctx.moveTo(0.2 * c_w, (1 - y / 100) * c_h)
   ctx.beginPath();
-  for (i = 0; i < (plot.length-1)/2; i++) {
+  for (i = 0; i < (plot.length-1)/2 ; i++) {
     avgpoint = [0.5*((0.2 * c_w + 40 + plot[2*i][0] * tscale)+ (0.2 * c_w + 40 + plot[2*i+1][0] * tscale)), 0.5*(((1 - plot[2*i][1] / 100) * c_h - 5)+((1 - plot[2*i+1][1] / 100) * c_h - 5))]
     ctx.lineTo(avgpoint[0],avgpoint[1])
 
   }
+  ctx.lineTo((0.2 * c_w + 40 + plot[plot.length-1][0] * tscale), ((1 - plot[plot.length-1][1] / 100) * c_h - 5))
   ctx.strokeStyle = 'gray'
   ctx.lineWidth = 2
   //ctx.setLineDash([10, 10])
@@ -308,7 +309,7 @@ function draw() {
   ctx.restore()
 
   ///Draw a person
-  ctx.drawImage(stickfig, 0.2 * c_w - 10, (1 - 1.0 * y0 / 100) * c_h - 20, 40, 40)
+  ctx.drawImage(stickfig, 0.2 * c_w - 5, (1 - 1.0 * y0 / 100) * c_h - 20, 40, 40)
 
 
   
