@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>UCSB Physics</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+<head>
+    <!-- W3 CSS standards -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <!-- Our CSS -->
+    <link rel="stylesheet" href="Styles.css">
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Color Schemes -->
+    <link rel='stylesheet' href="https://www.w3schools.com/lib/w3-colors-flat.css">
+
+</head>
+<style>
+#graph {
+    width: 500px!important;
+    display: inline-block!important;
+    overflow: hidden;
+    float: right;
+  
+}
+
+#demo {
+    width: 200px!important;
+    display: inline-block!important;
+    overflow: hidden;
+    margin-right: 0px!important;
+    padding-right: 0px!important;
+}
+
+
+</style>
+
+<body>
+    <div class="w3-main w3-center">
+        <div class="w3-row w3-container" width="100%">
+            <div class=" w3-center" id='page'>
+                <div class="w3-card section" id="summary-holder">
+                    <header class="w3-container">
+                        <h3>Free Fall</h3>
+                    </header>
+                    <div class='w3-container inner'>
+                        When an object is dropped from some height above the ground, gravity accelerates it downwards, converting its initial potential energy into kinetic energy as it falls to the ground. Use the simulation below to explore how this happens
+                    </div>
+                </div>
+                <div class="w3-card section" id="sim-holder">
+                    <div class='w3-container inner'>
+                        <div id="demo"  ></div><div id="graph"></div>
+    
+                    </div>
+                </div>
+                <div class="w3-card section" id='tool-holder'>
+                    <div class='w3-container inner'>
+
+                        <button onclick="javascript:startUpdate();"  class='object' >Drop!</button>
+
+                        <b>Initial Height:</b> <span id="h" style="font-weight:bold;color:#000000" > 50 </span> m <br>
+
+                        <input type="range" min="0" max="40" value="20" class="slider_h slider" id="myRange_h">
+                        <br>
+                        <b>Initial Velocity:</b> <span id="v" style="font-weight:bold;color:#000000" > 0 </span> m/s
+                        <br>
+                        <input type="range" min="-20" max="20" value="0" class="sliderv slider" id="myRangev">
+                        <br>
+                        <b>Initial PE:</b> <span id="PE" style="font-weight:bold;color:#000000" >196.0 </span> J
+                        <br>
+                        <b>Initial KE:</b> <span id="KE" style="font-weight:bold;color:#000000" > 0.0 </span> J
+                        <br>
+                        <b>Total Energy:</b> <span id="TE" style="font-weight:bold;color:#000000" > 196.0 </span> J
+                        
+                    </div>
+                    <footer class="w3-container"><h3></h3></footer>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+   
+     <script src="Sim.js"></script>
+</body>
