@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>UCSB Physics</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+<head>
+    <!-- W3 CSS standards -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <!-- Our CSS -->
+    <link rel="stylesheet" href="Styles.css">
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Color Schemes -->
+    <link rel='stylesheet' href="https://www.w3schools.com/lib/w3-colors-flat.css">
+
+</head>
+<style>
+
+#graph{
+  width: 100%!important;
+  display: block!important;
+  overflow: hidden;
+}
+#demo{
+  width: 100%!important;
+  /*display: inline-block!important;*/
+  overflow: hidden;
+  margin-right: 0px!important;
+  padding-right: 0px!important;
+}
+
+#demo2{
+width: 100%!important;
+height:40px;
+display: block!important;
+overflow: hidden;
+}
+
+</style> 
+
+<body>
+    <div class="w3-main w3-center">
+        <div class="w3-row w3-container" width="100%">
+            <div class=" w3-center" id='page'>
+                <div class="w3-card section" id="summary-holder">
+                    <header class="w3-container">
+                        <h3>Interference and Diffraction</h3>
+                    </header>
+                    <div class='w3-container inner'>
+                        Below we simulate the image that would appear if you pointed a laser light through two slits. The plot above the slits shows, quantitatively, the relative intensity along the screen.
+                        Use the sliders to simulate the two slit experiment. You can turn the effects of interference and diffraction off to see how each contributes to the final pattern
+                    </div>
+                </div>
+                <div class="w3-card section" id="sim-holder">
+                    <div class='w3-container inner'>
+                        <center>
+                        <div id="graph"></div>
+
+                        <div id="demo" ></div>
+                    <br>
+                        <div id="demo2" ></div>
+                            <br>
+                            <img src="https://i.imgur.com/B36BXjQ.jpg" width=15px>
+                        </center>
+                    </div>
+                </div>
+                <div class="w3-card section" id='tool-holder'>
+                    <div class='w3-container inner'>
+
+                        <b>Width:</b> <span id="h" style="font-weight:bold;color:#000000" > 40 </span> um<br>
+      <input type="range" min="0" max="200" value="40" class="slider_h slider" id="myRange_h">
+      <br>
+      <b>Separation</b> <span id="v" style="font-weight:bold;color:#000000" > 250 </span> um <br>
+      <input type="range" min="0" max="500" value="250" class="sliderv slider" id="myRangev">
+      <br>
+      <b>Wavelength</b> <span id="ar" style="font-weight:bold;color:#000000" > 650 </span> nm <br>
+      <input type="range" min="380" max="700" value="650" class="sliderar slider" id="myRangear">
+      <br>
+      <input type="checkbox" id="Diffraction"> <b> Diffraction Outline </b>      <input type="checkbox" id="Interference" > <b> Interference Outline</b>
+      <br>
+                        
+                    </div>
+                    <footer class="w3-container"><h3></h3></footer>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+   
+     <script src="Sim.js"></script>
+</body>
