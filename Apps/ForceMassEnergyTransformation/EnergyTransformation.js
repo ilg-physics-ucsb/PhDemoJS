@@ -101,7 +101,7 @@ layout_graph = {
         r: 50,
         b: 50,
         t: 50,
-        pad: 0
+        pad: 4
     },
     paper_bgcolor: 'white',
     plot_bgcolor: 'white',
@@ -136,7 +136,7 @@ layout_demo = {
         r: 0,
         b: 50,
         t: 50,
-        pad: 0
+        pad: 4
     },
     paper_bgcolor: 'white',
     plot_bgcolor: 'white',
