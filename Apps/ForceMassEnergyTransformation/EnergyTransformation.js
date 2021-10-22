@@ -38,7 +38,7 @@ var trace_KE= {
 
 }
 var trace_live= {
-    x: [1],
+    x: [1.2],
     y: h,
     name: "Position",
     mode: 'markers',
@@ -94,14 +94,14 @@ layout_graph = {
         range: [-0.2, 400]
     },
     autosize: false,
-    width: 800,
+    width: 400,
     height: 400,
     margin: {
         l: 0,
         r: 50,
         b: 50,
         t: 50,
-        pad: 4
+        pad: 0
     },
     paper_bgcolor: 'white',
     plot_bgcolor: 'white',
@@ -129,14 +129,14 @@ layout_demo = {
         range: [-0.2, 40]
     },
     autosize: false,
-    width: 200,
+    width: 100,
     height: 400,
     margin: {
-        l: 50,
+        l: 0,
         r: 0,
         b: 50,
         t: 50,
-        pad: 4
+        pad: 0
     },
     paper_bgcolor: 'white',
     plot_bgcolor: 'white',
