@@ -5,6 +5,7 @@ var marker_color="steelblue"
 
 var titles=[['Select Data to Plot','Data', 'Variable'],['Black Body', 'Intensity (Arb. Units)', 'Temperaure (K)'],['Metabolism','BMR (kJ/24 h)','Mass (kg)']]
 var logtitles= ['','Log ']
+var removeUnitsRegex = / \([\w\W]+\)/
 
 
 //Title and Axes

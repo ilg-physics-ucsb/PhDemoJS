@@ -69,8 +69,8 @@ function plot_update(){
     })
 
     layout.title.text= layout.title.text + ' ' +logtitles[plotaslog]+logtitles[plotaslog]
-    layout.xaxis.title.text= logtitles[plotaslog] + layout.xaxis.title.text
-    layout.yaxis.title.text= logtitles[plotaslog] + layout.yaxis.title.text
+    layout.xaxis.title.text= logtitles[plotaslog] + ((plotaslog) ? layout.xaxis.title.text.replace(removeUnitsRegex, "") : layout.xaxis.title.text)
+    layout.yaxis.title.text= logtitles[plotaslog] + ((plotaslog) ? layout.yaxis.title.text.replace(removeUnitsRegex, "") : layout.yaxis.title.text)
  
   layout.xaxis.range=[1.2* Math.min(...x_live), 1.2* Math.max(...x_live)]
   layout.yaxis.range=[1.2* Math.min(...y_live), 1.2* Math.max(...y_live)]
